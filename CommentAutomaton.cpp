@@ -43,3 +43,4 @@ void CommentAutomaton::S2(const std::string& input) {
         S2(input);
     }
 }
+
