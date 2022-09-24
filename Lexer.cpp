@@ -58,7 +58,7 @@ void Lexer::Run(std::string& input) {
 
     while(!input.empty()){
 
-        int maxRead = 0;
+        unsigned int maxRead = 0;
         Automaton* maxAutomaton = automata.at(0);
 
         for(unsigned int i = 0; i < automata.size(); i++) {
