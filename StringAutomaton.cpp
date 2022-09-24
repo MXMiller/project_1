@@ -46,6 +46,6 @@ void StringAutomaton::S2(const std::string& input) {
         S1(input);
     }
     else {
-
+        //this->type = TokenType::UNDEFINED;
     }
 }

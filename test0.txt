@@ -14,7 +14,6 @@ Queries
 tHISiSaNiD93573682
 rules
 'This Is A sTrInG'
-'Let's eat'
 #this is a comment
 #| block
 comment |#
