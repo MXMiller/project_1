@@ -3,7 +3,7 @@
 using namespace std;
 
 void CommentAutomaton::S0(const std::string& input) {
-    if (input[index] == '#' & input[index + 1] == '|') {
+    if ((input[index] == '#') & (input[index + 1] == '|')) {
         inputRead++;
         index++;
         S2(input);
@@ -28,7 +28,7 @@ void CommentAutomaton::S1(const std::string& input) {
 }
 
 void CommentAutomaton::S2(const std::string& input) {
-    if (input[index] == '|' & input[index + 1] == '#'){
+    if ((input[index] == '|') & (input[index + 1] == '#')){
         inputRead++;
     } else if (input[index] == EOF){
         this->type = TokenType::UNDEFINED;
