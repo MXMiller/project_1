@@ -14,21 +14,14 @@ void StringAutomaton::S0(const std::string& input) {
 }
 
 void StringAutomaton::S1(const std::string& input) {
-    if ((input[index] == '\n')) {
+    if(index >= (input.size())){
+        this->type = TokenType::UNDEFINED;
+    } else if ((input[index] == '\n')) {
         this->newLines++;
         inputRead++;
         index++;
         S1(input);
-    }
-
-    //INCLUDING THIS ELSE-IF MAKE 90-2 WORK, BUT BREAKS EVERYTHING ELSE
-    /*else if ((input[index] == '\'') & (!isspace(input[index + 1]))) {
-        inputRead++;
-        index++;
-        S1(input);
-    }*/
-
-    else if ((input[index] == '\'')) {
+    } else if ((input[index] == '\'')) {
         inputRead++;
         index++;
         S2(input);
@@ -40,12 +33,11 @@ void StringAutomaton::S1(const std::string& input) {
 }
 
 void StringAutomaton::S2(const std::string& input) {
-    if (input[index] == '\'') {
+    if ((input[index] == '\'')) {
         inputRead++;
         index++;
         S1(input);
-    }
-    else {
+    } else {
         //this->type = TokenType::UNDEFINED;
     }
 }

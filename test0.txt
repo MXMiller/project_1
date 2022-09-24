@@ -1,22 +1,6 @@
-,
-.
-?
-(
-)
-:
-:-
-*
-+
-Schemes
-Facts
-Rules
-Queries
-tHISiSaNiD93573682
-rules
-'This Is A sTrInG'
-#this is a comment
-#| block
-comment |#
-Facts
-$^
-diditwork
+'this is a string'
+'this is not a string'
+
+#| block |#
+
+#| not block

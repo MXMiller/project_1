@@ -28,11 +28,11 @@ void CommentAutomaton::S1(const std::string& input) {
 }
 
 void CommentAutomaton::S2(const std::string& input) {
-    if ((input[index] == '|') & (input[index + 1] == '#')){
-        inputRead++;
-        inputRead++;
-    } else if(input[index] == EOF){
+    if(index >= (input.size())){
         this->type = TokenType::UNDEFINED;
+    } else if ((input[index] == '|') & (input[index + 1] == '#')){
+        inputRead++;
+        inputRead++;
     } else if(input[index] == '\n'){
         inputRead++;
         index++;
