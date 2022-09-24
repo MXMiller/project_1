@@ -1,0 +1,3 @@
+C:/Users/Max Miller/Desktop/School/FALL 2022/cs 236/project_1.1/cmake-build-debug/CMakeFiles/project_1.dir
+C:/Users/Max Miller/Desktop/School/FALL 2022/cs 236/project_1.1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Max Miller/Desktop/School/FALL 2022/cs 236/project_1.1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
