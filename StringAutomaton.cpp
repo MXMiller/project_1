@@ -20,6 +20,7 @@ void StringAutomaton::S1(const std::string& input) {
         index++;
         S1(input);
     } else if ((input[index] == '\'')) {
+        /*
         if ((input[index + 1] != '\n')) {
             inputRead++;
             index++;
@@ -27,6 +28,8 @@ void StringAutomaton::S1(const std::string& input) {
         } else {
             inputRead++;
         }
+        */
+        inputRead++;
     } else {
         inputRead++;
         index++;
