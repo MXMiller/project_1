@@ -62,7 +62,7 @@ void Lexer::Run(std::string& input) {
         Automaton* maxAutomaton = automata.at(0);
 
         for(unsigned int i = 0; i < automata.size(); i++) {
-            int numRead = automata.at(i)->Start(input);
+            unsigned int numRead = automata.at(i)->Start(input);
 
             if (numRead > maxRead) {
                 maxRead = numRead;
