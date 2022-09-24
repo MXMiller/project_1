@@ -25,11 +25,13 @@ void StringAutomaton::S1(const std::string& input) {
     /*else if ((input[index] == '\'') & (!isspace(input[index + 1]))) {
         inputRead++;
         index++;
-        S2(input);
+        S1(input);
     }*/
 
     else if ((input[index] == '\'')) {
         inputRead++;
+        index++;
+        S2(input);
     } else {
         inputRead++;
         index++;
@@ -38,12 +40,12 @@ void StringAutomaton::S1(const std::string& input) {
 }
 
 void StringAutomaton::S2(const std::string& input) {
-    if ((input[index] == '\'') || (input[index + 1] == '\'')) {
+    if (input[index] == '\'') {
         inputRead++;
         index++;
         S1(input);
     }
     else {
-        Serr();
+
     }
 }
