@@ -19,13 +19,6 @@ void StringAutomaton::S1(const std::string& input) {
         inputRead++;
         index++;
         S1(input);
-    } else if ((input[index] == '\'')) {
-        inputRead++;
-
-        if ((!isspace(input[index + 1]))) {
-            index++;
-            S2(input);
-        }
     }
 
     //INCLUDING THIS ELSE-IF MAKE 90-2 WORK, BUT BREAKS EVERYTHING ELSE
@@ -35,7 +28,9 @@ void StringAutomaton::S1(const std::string& input) {
         S2(input);
     }*/
 
-    else {
+    else if ((input[index] == '\'')) {
+        inputRead++;
+    } else {
         inputRead++;
         index++;
         S1(input);
