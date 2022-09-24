@@ -19,7 +19,7 @@ void StringAutomaton::S1(const std::string& input) {
         inputRead++;
         index++;
         S1(input);
-    } else if (input[index] == '\'') {
+    } else if ((input[index] == '\'') & ((input[index + 1] == '\n') || (input[index + 1] == ' '))) {
         inputRead++;
     } else {
         inputRead++;
