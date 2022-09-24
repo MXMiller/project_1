@@ -35,7 +35,9 @@ void CommentAutomaton::S2(const std::string& input) {
         inputRead++;
         index++;
         S2(input);
-    }else {
+    }  else if(input[index] == EOF){
+        this->type = TokenType::UNDEFINED;
+    } else {
         inputRead++;
         index++;
         S2(input);
