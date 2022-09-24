@@ -20,22 +20,15 @@ void StringAutomaton::S1(const std::string& input) {
         index++;
         S1(input);
     }
-
+    /*
     else if ((input[index] == '\'') & (!isspace(input[index + 1]))) {
         inputRead++;
         index++;
         S1(input);
     }
-
+    */
     else if ((input[index] == '\'')) {
         inputRead++;
-
-        /*
-        if ((input[index + 1] == '\'') & (!isspace(input[index + 1])) {
-            index++;
-            S1(input);
-        }
-        */
     } else {
         inputRead++;
         index++;
