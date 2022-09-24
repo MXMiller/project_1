@@ -52,7 +52,7 @@ void Lexer::CreateAutomata() {
 void Lexer::Run(std::string& input) {
     // TODO: convert this pseudo-code with the algorithm into actual C++ code
 
-    int lineNum = 1;
+    unsigned int lineNum = 1;
 
     // While there are more characters to tokenize
 
