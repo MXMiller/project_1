@@ -21,26 +21,10 @@ void UndefinedAutomaton::S1(const std::string& input) {
     if(input[index] == '\''){
         Serr();
     } else {
-        if(index <= input.size()){
+        if(index <= static_cast<int>(input.size())){
             inputRead++;
             index++;
             S1(input);
-        }
-    }
-}
-
-void UndefinedAutomaton::S2(const std::string& input) {
-    if(input[index] == '\''){
-        if(index <= input.size()){
-            inputRead++;
-            index++;
-            S1(input);
-        }
-    } else {
-        if(index <= input.size()){
-            inputRead++;
-            index++;
-            S2(input);
         }
     }
 }

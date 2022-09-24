@@ -14,7 +14,7 @@ void StringAutomaton::S0(const std::string& input) {
 }
 
 void StringAutomaton::S1(const std::string& input) {
-    if(index >= (input.size())){
+    if(index >= static_cast<int>(input.size())){
         this->type = TokenType::UNDEFINED;
     } else if ((input[index] == '\n')) {
         this->newLines++;

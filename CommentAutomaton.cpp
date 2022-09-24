@@ -28,7 +28,7 @@ void CommentAutomaton::S1(const std::string& input) {
 }
 
 void CommentAutomaton::S2(const std::string& input) {
-    if(index >= (input.size())){
+    if(index >= static_cast<int>(input.size())){
         this->type = TokenType::UNDEFINED;
     } else if ((input[index] == '|') & (input[index + 1] == '#')){
         inputRead++;
