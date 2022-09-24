@@ -1,0 +1,27 @@
+# ninja log v5
+33	705	6856847796110888	CMakeFiles/project_1.dir/PeriodAutomaton.cpp.obj	8714dceae5bfbe00
+20	542	6856847794664744	CMakeFiles/project_1.dir/Token.cpp.obj	e2fb73ea880e5349
+0	716	6856847796300378	CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj	be1c4e5b1ad42d3d
+706	1388	6856847803052316	CMakeFiles/project_1.dir/Q_MarkAutomaton.cpp.obj	5be75a07f80e0a87
+5	724	6856847796390140	CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj	1ab1d1333da1d7c0
+9	856	6856847797786393	CMakeFiles/project_1.dir/main.cpp.obj	6ba9368c57a34a38
+3	550	6857010352907571	CMakeFiles/project_1.dir/Lexer.cpp.obj	af13c1dc1e579b91
+546	1231	6856847801536377	CMakeFiles/project_1.dir/CommaAutomaton.cpp.obj	ddd1c5cd492d18be
+717	1393	6856847803052316	CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj	81b8f89e84d08d19
+724	1422	6856847803291680	CMakeFiles/project_1.dir/Right_ParenAutomaton.cpp.obj	30271f71cd92d10b
+4	398	6856868113624346	CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj	170bbae46a7c82b6
+857	1528	6856847804408685	CMakeFiles/project_1.dir/MultiplyAutomaton.cpp.obj	dd3b792200fde12f
+1528	2299	6856847812247720	CMakeFiles/project_1.dir/QueriesAutomaton.cpp.obj	e248f650d1fdb165
+1081	1845	6856847807470506	CMakeFiles/project_1.dir/IdAutomaton.cpp.obj	b312160d8909ead3
+1231	2008	6856847809215835	CMakeFiles/project_1.dir/AddAutomaton.cpp.obj	31bbbf43875b7177
+1388	2147	6856847810721803	CMakeFiles/project_1.dir/SchemesAutomaton.cpp.obj	9ffffa46bca7dded
+1422	2200	6856847811250405	CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj	5b704005d66dfb12
+1394	2249	6856847811739079	CMakeFiles/project_1.dir/RulesAutomaton.cpp.obj	f21cb090bb40aba4
+8	465	6856951412922091	CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj	4e0e4987a1346e54
+6	371	6857010351132330	CMakeFiles/project_1.dir/StringAutomaton.cpp.obj	a458dc2408861b35
+2200	2658	6856847815858075	CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj	1030fe46cea45aae
+550	713	6857010354491587	project_1.exe	ee45cec515d11981
+3	517	6857011171049024	CMakeFiles/project_1.dir/Lexer.cpp.obj	af13c1dc1e579b91
+518	692	6857011172764462	project_1.exe	ee45cec515d11981
+3	511	6857011760536188	CMakeFiles/project_1.dir/Lexer.cpp.obj	af13c1dc1e579b91
+512	688	6857011762261588	project_1.exe	ee45cec515d11981
