@@ -23,12 +23,12 @@ void StringAutomaton::S1(const std::string& input) {
         inputRead++;
 
         //working on this:
-
+        /*
         if (!isspace(input[index + 1])) {
             index++;
             S1(input);
         }
-
+        */
     } else {
         inputRead++;
         index++;
