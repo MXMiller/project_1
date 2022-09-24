@@ -15,16 +15,9 @@ tHISiSaNiD93573682
 rules
 'This Is A sTrInG'
 'Let's eat'
-
 #this is a comment
 #| block
 comment |#
 Facts
 $^
 diditwork
-
-#trying things from learnng suite
-
-Facts:
-$
-Rules:
