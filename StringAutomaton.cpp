@@ -21,11 +21,9 @@ void StringAutomaton::S1(const std::string& input) {
         S1(input);
     } else if (input[index] == '\'') {
         inputRead++;
-    } else if (isalpha(input[index]) || isalnum(input[index]) || isspace(input[index])) {
+    } else {
         inputRead++;
         index++;
         S1(input);
-    } else {
-        this->type = TokenType::UNDEFINED;
     }
 }
