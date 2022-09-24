@@ -14,12 +14,12 @@ void StringAutomaton::S0(const std::string& input) {
 }
 
 void StringAutomaton::S1(const std::string& input) {
-    if (input[index] == '\n') {
-        this->newLines++;
+    if ((input[index] == '\n')) {
+        //this->newLines++;
         inputRead++;
         index++;
         S1(input);
-    } else if ((input[index] == '\'') & ((input[index + 1] == '\n') || (input[index + 1] == ' '))) {
+    } else if ((input[index] == '\'')) {
         inputRead++;
     } else {
         inputRead++;
