@@ -53,13 +53,12 @@ void Lexer::Run(std::string& input) {
     // TODO: convert this pseudo-code with the algorithm into actual C++ code
 
     int lineNum = 1;
-    int maxRead = 0;
 
     // While there are more characters to tokenize
 
     while(!input.empty()){
 
-        maxRead = 0;
+        int maxRead = 0;
         Automaton* maxAutomaton = automata.at(0);
 
         for(unsigned int i = 0; i < automata.size(); i++) {

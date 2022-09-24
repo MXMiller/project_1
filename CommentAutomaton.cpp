@@ -3,11 +3,7 @@
 using namespace std;
 
 void CommentAutomaton::S0(const std::string& input) {
-    if ((input[index] == '#') & (input[index + 1] == '|')) {
-        inputRead++;
-        index++;
-        S2(input);
-    } else if (input[index] == '#') {
+    if (input[index] == '#') {
         inputRead++;
         index++;
         S1(input);
@@ -18,7 +14,11 @@ void CommentAutomaton::S0(const std::string& input) {
 }
 
 void CommentAutomaton::S1(const std::string& input) {
-    if(input[index] == '\n'){
+    if ((input[index] == '|') & (index == 1)) {
+        inputRead++;
+        index++;
+        S2(input);
+    } else if(input[index] == '\n'){
 
     } else {
         inputRead++;
@@ -28,7 +28,7 @@ void CommentAutomaton::S1(const std::string& input) {
 }
 
 void CommentAutomaton::S2(const std::string& input) {
-    if ((input[index] == '|') & (input[index + 1] == '#')){
+    if ((input[index] == '|')){
         inputRead++;
     } else if (input[index] == EOF){
         this->type = TokenType::UNDEFINED;
@@ -36,5 +36,17 @@ void CommentAutomaton::S2(const std::string& input) {
         inputRead++;
         index++;
         S2(input);
+    }
+}
+
+void CommentAutomaton::S3(const std::string& input) {
+    if ((input[index] == '#')){
+        inputRead++;
+    } else if (input[index] == EOF){
+        this->type = TokenType::UNDEFINED;
+    }else {
+        inputRead++;
+        index++;
+        S3(input);
     }
 }
