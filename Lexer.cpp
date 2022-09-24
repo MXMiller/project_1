@@ -84,9 +84,11 @@ void Lexer::Run(std::string& input) {
         }
 
         //testing if substr does what its supposed too
+        /*
         if(maxRead <= input.size()){
-            //input = input.substr(maxRead);
+            input = input.substr(maxRead);
         }
+        */
         input = input.substr(maxRead);
     }
     //add end of file token to all tokens
