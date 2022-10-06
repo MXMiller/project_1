@@ -17,6 +17,8 @@ private:
 
     std::vector<Token*> tokens;
 
+    int i = 0;
+
 public:
     Parser(std::vector<Token*> inputTokens);
     ~Parser();
@@ -25,8 +27,10 @@ public:
 
     string toString();
 
+    void match(TokenType type, int i);
+
     //DATALOG GRAMMAR
-    /*
+
     void datalogProgram();
 
     void schemeList();
@@ -47,7 +51,7 @@ public:
     void stringList();
     void idList();
     void parameter();
-     */
+
 };
 
 #endif //PROJECT_1_PARSER_H

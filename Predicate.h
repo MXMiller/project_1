@@ -18,6 +18,12 @@ private:
 public:
     Predicate(){}
     ~Predicate(){}
+
+    string toString(){
+        string output = "";
+        return output;
+    }
+
 };
 
 #endif //PROJECT_1_PREDICATE_H

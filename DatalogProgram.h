@@ -21,6 +21,12 @@ private:
 public:
     DatalogProgram(){}
     ~DatalogProgram(){}
+
+    string toString(){
+        string output = "";
+        return output;
+    }
+
 };
 
 #endif //PROJECT_1_DATALOGPROGRAM_H

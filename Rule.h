@@ -12,12 +12,17 @@ class Rule
 {
 private:
 
-    Predicate* head = new Predicate();
-    vector<Predicate*> body;
+    Predicate* headPredicate = new Predicate();
+    vector<Predicate*> bodyPredicates;
 
 public:
     Rule(){}
     ~Rule(){}
+
+    string toString(){
+        string output = "";
+        return output;
+    }
 };
 
 #endif //PROJECT_1_RULE_H

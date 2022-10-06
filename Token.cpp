@@ -48,6 +48,10 @@ string Token::getType() {
     }
 }
 
+TokenType Token::getTokenType() {
+    return this->t;
+}
+
 string Token::getVal() {
     return value;
 }
