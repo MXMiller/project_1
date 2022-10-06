@@ -284,7 +284,7 @@ DatalogProgram* Parser::parse(){
     catch (Token* token) {
         // Block of code to handle errors
         cout << "Failure!" << endl;
-        cout << "  (" << token->getType() << ",'" << token->getVal() << "'," << token->getLine() << ")" << endl;
+        cout << "  (" << token->getType() << ",\"" << token->getVal() << "\"," << token->getLine() << ")" << endl;
     }
 
     return datalog;
