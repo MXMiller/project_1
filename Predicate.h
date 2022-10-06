@@ -21,6 +21,14 @@ public:
 
     string toString(){
         string output = "";
+        output.append(getID() + '(');
+        for(unsigned int i = 0; i < parameters.size(); i++){
+            output.append(parameters.at(i)->getParam());
+            if(i < parameters.size() - 1){
+                output.append(",");
+            }
+        }
+        output.append(")");
         return output;
     }
 
@@ -33,7 +41,14 @@ public:
     }
 
     void addParam(string input){
-        parameters.push_back(new Parameter(input));
+        Parameter* p = new Parameter(input);
+        parameters.push_back(p);
+    }
+
+    int getSize(){ return parameters.size(); }
+
+    string getParam(int i){
+        return parameters.at(i)->getParam();
     }
 };
 
