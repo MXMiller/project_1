@@ -8,7 +8,6 @@ using namespace std;
 int main(int argc, char** argv) {
 
     Lexer* lexer = new Lexer();
-    Parser* parser = new Parser();
 
     // check command line arguments
     if (argc != 2) {
@@ -34,7 +33,9 @@ int main(int argc, char** argv) {
     //cout << input << endl;
 
     lexer->Run(input);
-    parser->Run(lexer->getTokens());
+
+    Parser* parser = new Parser(lexer->getTokens());
+    parser->parse();
 
     cout << parser->toString();
 

@@ -4,6 +4,7 @@
 #include "Automaton.h"
 #include "Token.h"
 #include "DatalogProgram.h"
+#include "Predicate.h"
 
 using namespace std;
 
@@ -11,6 +12,8 @@ class Rule
 {
 private:
 
+    Predicate* head = new Predicate();
+    vector<Predicate*> body;
 
 public:
     Rule(){}

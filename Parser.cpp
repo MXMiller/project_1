@@ -2,25 +2,47 @@
 
 using namespace std;
 
-Parser::Parser() {
-
+Parser::Parser(std::vector<Token*> inputTokens) {
+    tokens = inputTokens;
 }
 
 Parser::~Parser() {
     // TODO: need to clean up the memory in `automata` and `tokens`
 }
 
-void Parser::Run(std::vector<Token*> inputTokens){
+/*
+Predicate Parser::scheme(){
 
-    tokens = inputTokens;
+}
+
+Predicate Parser::fact(){
+
+}
+
+Rule Parser::rule(){
+
+}
+
+Predicate Parser::query(){
+
+}
+*/
+
+DatalogProgram* Parser::parse(){
 
     cout << "I am in Parser.cpp" << endl;
+
+    for(unsigned int i = 0; i < tokens.size(); i++) {
+        Token* currToken = tokens.at(i);
+    }
+
+    return datalog;
 }
 
 string Parser::toString() {
     string output = "";
 
-    //its showing symbols because
+    //output the list of schemes, facts, rules, queries, and domain
 
     for(unsigned int i = 0; i < tokens.size(); i++){
         output.push_back('(');
@@ -32,6 +54,7 @@ string Parser::toString() {
 
     output.append("Total Tokens = ");
     output += to_string(tokens.size());
+
 
     return output;
 }

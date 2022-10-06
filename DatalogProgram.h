@@ -13,8 +13,10 @@ class DatalogProgram
 {
 private:
 
-    vector<Predicate*> predicates;
-    vector<Rule*> rules;
+    vector<Predicate> schemes;
+    vector<Predicate> facts;
+    vector<Rule> rules;
+    vector<Predicate> queries;
 
 public:
     DatalogProgram(){}

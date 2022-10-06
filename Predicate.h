@@ -4,6 +4,7 @@
 #include "Automaton.h"
 #include "Token.h"
 #include "DatalogProgram.h"
+#include "Parameter.h"
 
 using namespace std;
 
@@ -11,6 +12,8 @@ class Predicate
 {
 private:
 
+    string ID;
+    vector<Parameter*> parameters;
 
 public:
     Predicate(){}

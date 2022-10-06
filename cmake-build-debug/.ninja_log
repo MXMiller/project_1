@@ -22,3 +22,14 @@
 17	1067	6867218994878408	CMakeFiles/project_1.dir/StringAutomaton.cpp.obj	a458dc2408861b35
 2200	2658	6856847815858075	CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj	1030fe46cea45aae
 603	787	6867256563325543	project_1.exe	4f89a45435fcdda8
+3	733	6867288985745112	CMakeFiles/project_1.dir/main.cpp.obj	6ba9368c57a34a38
+8	743	6867288985844847	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
+743	1433	6867288992676575	project_1.exe	4f89a45435fcdda8
+9	731	6867291015125872	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
+4	787	6867291015704316	CMakeFiles/project_1.dir/Lexer.cpp.obj	af13c1dc1e579b91
+787	964	6867291017429702	project_1.exe	4f89a45435fcdda8
+4	608	6867291116088007	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
+609	792	6867291117893195	project_1.exe	4f89a45435fcdda8
+9	747	6867292655180580	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
+4	781	6867292655519655	CMakeFiles/project_1.dir/Lexer.cpp.obj	af13c1dc1e579b91
+781	1053	6867292658162579	project_1.exe	4f89a45435fcdda8

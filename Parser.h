@@ -4,6 +4,8 @@
 #include "Automaton.h"
 #include "Token.h"
 #include "DatalogProgram.h"
+#include "Predicate.h"
+#include "Rule.h"
 
 using namespace std;
 
@@ -12,15 +14,40 @@ class Parser
 private:
 
     DatalogProgram* datalog = new DatalogProgram();
+
     std::vector<Token*> tokens;
 
 public:
-    Parser();
+    Parser(std::vector<Token*> inputTokens);
     ~Parser();
 
-    void Run(std::vector<Token*> inputTokens);
+    DatalogProgram* parse();
 
     string toString();
+
+    //DATALOG GRAMMAR
+    /*
+    void datalogProgram();
+
+    void schemeList();
+    void factList();
+    void ruleList();
+    void queryList();
+
+    Predicate scheme();
+    Predicate fact();
+    Rule rule();
+    Predicate query();
+
+    void headPredicate();
+    void predicate();
+
+    void predicateList();
+    void parameterList();
+    void stringList();
+    void idList();
+    void parameter();
+     */
 };
 
 #endif //PROJECT_1_PARSER_H
