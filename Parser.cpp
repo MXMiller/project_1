@@ -155,13 +155,13 @@ void Parser::headPredicate(Rule* rule){
     Predicate* head = new Predicate();
 
     match(TokenType::ID, i);
-    i++;
     head->setID(tokens.at(i)->getVal());
+    i++;
     match(TokenType::LEFT_PAREN, i);
     i++;
     match(TokenType::ID, i);
-    i++;
     head->addParam(tokens.at(i)->getVal());
+    i++;
     idList(head);
     match(TokenType::RIGHT_PAREN, i);
     i++;
@@ -174,8 +174,8 @@ void Parser::predicate(Rule* rule){
     Predicate* body = new Predicate();
 
     match(TokenType::ID, i);
-    i++;
     body->setID(tokens.at(i)->getVal());
+    i++;
     match(TokenType::LEFT_PAREN, i);
     i++;
     parameter(body);
@@ -184,6 +184,8 @@ void Parser::predicate(Rule* rule){
     }
     match(TokenType::RIGHT_PAREN, i);
     i++;
+
+    rule->addBody(body);
 }
 void Parser::predicate(Predicate* query){
     //cout << "       IN predicate FUNCTION" << endl;

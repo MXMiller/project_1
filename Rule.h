@@ -21,6 +21,16 @@ public:
 
     string toString(){
         string output = "";
+        output.append(headPredicate->toString());
+        output.append(" :- ");
+        for(unsigned int i = 0; i < bodyPredicates.size(); i++){
+            output.append(bodyPredicates.at(i)->toString());
+            if(i < bodyPredicates.size() - 1){
+                output.append(",");
+            } else {
+                output.append(".");
+            }
+        }
         return output;
     }
 

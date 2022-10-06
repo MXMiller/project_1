@@ -48,7 +48,7 @@ public:
         output += to_string(getSize(rules));
         output.append("):\n");
         for(unsigned int i = 0; i < rules.size(); i++){
-            //output.append("  " + rules.at(i)->toString() + "\n");
+            output.append("  " + rules.at(i)->toString() + "\n");
         }
 
         //QUERIES
@@ -69,7 +69,7 @@ public:
         output += to_string(domain.size());
         output.append("):\n");
         for(auto itr : domain){
-            output.append(itr + "\n");
+            output.append("  " + itr + "\n");
         }
 
         return output;
