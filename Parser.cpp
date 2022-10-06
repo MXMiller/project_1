@@ -93,7 +93,9 @@ Predicate Parser::scheme(){
     match(TokenType::ID, i);
     scheme->addParam(tokens.at(i)->getVal());
     i++;
-    idList(scheme);
+    if(tokens.at(i)->getTokenType() == TokenType::COMMA){
+        idList(scheme);
+    }
     match(TokenType::RIGHT_PAREN, i);
     i++;
 
