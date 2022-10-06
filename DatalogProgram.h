@@ -40,7 +40,7 @@ public:
         output += to_string(getSize(facts));
         output.append("):\n");
         for(unsigned int i = 0; i < facts.size(); i++){
-            output.append("  " + facts.at(i)->toString() + "\n");
+            output.append("  " + facts.at(i)->toString() + ".\n");
         }
 
         //RULES
@@ -56,7 +56,7 @@ public:
         output += to_string(getSize(queries));
         output.append("):\n");
         for(unsigned int i = 0; i < queries.size(); i++){
-            output.append("  " + queries.at(i)->toString() + "\n");
+            output.append("  " + queries.at(i)->toString() + "?\n");
         }
 
         //DOMAIN
