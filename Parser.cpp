@@ -59,7 +59,7 @@ void Parser::ruleList(){
     //cout << "       IN ruleList FUNCTION" << endl;
     rule();
 
-    if(tokens.at(i)->getTokenType() == TokenType::RULES){
+    if(tokens.at(i)->getTokenType() == TokenType::ID){
         ruleList();
     }
 }
