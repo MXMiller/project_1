@@ -94,8 +94,10 @@ void Lexer::Run(std::string& input) {
 }
 
 string Lexer::toString() {
+
     string output = "";
 
+    /*
     //its showing symbols because
 
     for(unsigned int i = 0; i < tokens.size(); i++){
@@ -108,6 +110,6 @@ string Lexer::toString() {
 
     output.append("Total Tokens = ");
     output += to_string(tokens.size());
-
+    */
     return output;
 }

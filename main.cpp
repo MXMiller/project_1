@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     lexer->Run(input);
     parser->Run(lexer->getTokens());
 
-    cout << lexer->toString();
+    cout << parser->toString();
 
     delete lexer;
 

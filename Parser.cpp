@@ -10,7 +10,12 @@ Parser::~Parser() {
     // TODO: need to clean up the memory in `automata` and `tokens`
 }
 
-void Parser::Run(std::vector<Token*> tokens){}
+void Parser::Run(std::vector<Token*> inputTokens){
+
+    tokens = inputTokens;
+
+    cout << "I am in Parser.cpp" << endl;
+}
 
 string Parser::toString() {
     string output = "";

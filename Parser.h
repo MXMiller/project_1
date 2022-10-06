@@ -3,7 +3,7 @@
 #include <vector>
 #include "Automaton.h"
 #include "Token.h"
-#include "Lexer.h"
+#include "DatalogProgram.h"
 
 using namespace std;
 
@@ -11,18 +11,14 @@ class Parser
 {
 private:
 
-
+    DatalogProgram* datalog = new DatalogProgram();
     std::vector<Token*> tokens;
-
-    // TODO: add any other private methods here (if needed)
 
 public:
     Parser();
     ~Parser();
 
-    void Run(std::vector<Token*> tokens);
-
-    // TODO: add other public methods here
+    void Run(std::vector<Token*> inputTokens);
 
     string toString();
 };
