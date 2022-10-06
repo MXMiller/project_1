@@ -164,15 +164,19 @@ void Parser::headPredicate(Rule* rule){
 
     Predicate* head = new Predicate();
 
+    //the head predicate breaks when it only reads one item.
+
     match(TokenType::ID, i);
     head->setID(tokens.at(i)->getVal());
     i++;
     match(TokenType::LEFT_PAREN, i);
     i++;
-    match(TokenType::ID, i);
+    match(TokenType::ID, i); //it broke here
     head->addParam(tokens.at(i)->getVal());
     i++;
-    idList(head);
+    if(tokens.at(i)->getTokenType() != TokenType::RIGHT_PAREN){
+        idList(head);
+    }
     match(TokenType::RIGHT_PAREN, i);
     i++;
 

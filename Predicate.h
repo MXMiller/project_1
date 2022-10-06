@@ -19,19 +19,6 @@ public:
     Predicate(){}
     ~Predicate(){}
 
-    string toString(){
-        string output = "";
-        output.append(getID() + '(');
-        for(unsigned int i = 0; i < parameters.size(); i++){
-            output.append(parameters.at(i)->getParam());
-            if(i < parameters.size() - 1){
-                output.append(",");
-            }
-        }
-        output.append(")");
-        return output;
-    }
-
     void setID(string input){
         ID = input;
     }
@@ -50,6 +37,21 @@ public:
     string getParam(int i){
         return parameters.at(i)->getParam();
     }
+
+
+    string toString(){
+        string output = "";
+        output.append(getID() + '(');
+        for(unsigned int i = 0; i < parameters.size(); i++){
+            output.append(parameters.at(i)->getParam());
+            if(i < parameters.size() - 1){
+                output.append(",");
+            }
+        }
+        output.append(")");
+        return output;
+    }
+
 };
 
 #endif //PROJECT_1_PREDICATE_H
