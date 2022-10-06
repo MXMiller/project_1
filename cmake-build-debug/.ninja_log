@@ -27,3 +27,7 @@
 899	1369	6857449156349344	project_1.exe	ee45cec515d11981
 15	1129	6857451407221045	CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj	170bbae46a7c82b6
 1130	1433	6857451410197953	project_1.exe	ee45cec515d11981
+7	1065	6867218994878408	CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj	4e0e4987a1346e54
+17	1067	6867218994878408	CMakeFiles/project_1.dir/StringAutomaton.cpp.obj	a458dc2408861b35
+24	1069	6867218994878408	CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj	170bbae46a7c82b6
+1070	2326	6867219007390429	project_1.exe	ee45cec515d11981

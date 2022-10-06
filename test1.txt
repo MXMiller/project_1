@@ -1,0 +1,6 @@
+'this is a string'
+'this is not a string'
+
+#| block |#
+
+#| not block
