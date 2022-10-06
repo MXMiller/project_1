@@ -1,14 +1,15 @@
 #include <fstream>
 #include <iostream>
 #include "Lexer.h"
+#include "Parser.h"
 
 using namespace std;
 
 int main(int argc, char** argv) {
 
     Lexer* lexer = new Lexer();
+    Parser* parser = new Parser();
 
-    // TODO
     // check command line arguments
     if (argc != 2) {
         cout << "usage: " << argv[0] << " input_file" << endl;
@@ -33,6 +34,7 @@ int main(int argc, char** argv) {
     //cout << input << endl;
 
     lexer->Run(input);
+    parser->Run(lexer->getTokens());
 
     cout << lexer->toString();
 
