@@ -41,7 +41,9 @@ void Parser::datalogProgram(){
 
 void Parser::schemeList(){
     //cout << "       IN schemeList FUNCTION" << endl;
-    scheme();
+    if(tokens.at(i)->getTokenType() != TokenType::FACTS){
+        scheme();
+    }
 
     if(tokens.at(i)->getTokenType() == TokenType::ID){
         schemeList();
@@ -49,7 +51,9 @@ void Parser::schemeList(){
 }
 void Parser::factList(){
     //cout << "       IN factList FUNCTION" << endl;
-    fact();
+    if(tokens.at(i)->getTokenType() != TokenType::RULES){
+        fact();
+    }
 
     if(tokens.at(i)->getTokenType() == TokenType::ID){
         factList();
@@ -57,7 +61,9 @@ void Parser::factList(){
 }
 void Parser::ruleList(){
     //cout << "       IN ruleList FUNCTION" << endl;
-    rule();
+    if(tokens.at(i)->getTokenType() != TokenType::QUERIES){
+        rule();
+    }
 
     if(tokens.at(i)->getTokenType() == TokenType::ID){
         ruleList();
@@ -65,7 +71,9 @@ void Parser::ruleList(){
 }
 void Parser::queryList(){
     //cout << "       IN queryList FUNCTION" << endl;
-    query();
+    if(tokens.at(i)->getTokenType() != TokenType::ENDOFFILE){
+        query();
+    }
 
     if(tokens.at(i)->getTokenType() == TokenType::ID){
         queryList();
