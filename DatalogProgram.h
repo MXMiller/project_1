@@ -95,7 +95,7 @@ public:
 
     void fillDomain(){
         for(unsigned int i = 0; i < facts.size(); i++){ //for each fact
-            for(unsigned int j = 0; j < facts.at(i)->getSize(); j++){ //for each parameter in that fact
+            for(int j = 0; j < facts.at(i)->getSize(); j++){ //for each parameter in that fact
                 string s = facts.at(i)->getParam(j);
                 domain.insert(s);
             }
