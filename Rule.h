@@ -23,6 +23,14 @@ public:
         string output = "";
         return output;
     }
+
+    void setHead(Predicate* input){
+        headPredicate  = input;
+    }
+
+    void addBody(Predicate* input){
+        bodyPredicates.push_back(input);
+    }
 };
 
 #endif //PROJECT_1_RULE_H

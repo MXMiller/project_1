@@ -43,14 +43,15 @@ public:
     Rule rule();
     Predicate query();
 
-    void headPredicate();
-    void predicate();
+    void headPredicate(Rule* rule);
+    void predicate(Rule* rule);
+    void predicate(Predicate* query);
 
-    void predicateList();
-    void parameterList();
-    void stringList();
-    void idList();
-    void parameter();
+    void predicateList(Rule* rule);
+    void parameterList(Predicate* input);
+    void stringList(Predicate* fact);
+    void idList(Predicate* input);
+    void parameter(Predicate* input);
 };
 
 #endif //PROJECT_1_PARSER_H

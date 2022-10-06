@@ -14,10 +14,12 @@ private:
  string p;
 
 public:
-    Parameter(){}
+    Parameter(string input){
+        p = input;
+    }
     ~Parameter(){}
 
-    string toString(){
+    string getParam(){
         return p;
     }
 };

@@ -12,10 +12,10 @@ class DatalogProgram
 {
 private:
 
-    vector<Predicate> schemes;
-    vector<Predicate> facts;
-    vector<Rule> rules;
-    vector<Predicate> queries;
+    vector<Predicate*> schemes;
+    vector<Predicate*> facts;
+    vector<Rule*> rules;
+    vector<Predicate*> queries;
 
 public:
     DatalogProgram(){}
@@ -23,9 +23,69 @@ public:
 
     string toString(){
         string output = "";
+
+        //SCHEMES:
+        output.append("Schemes(");
+        output += to_string(getSize(schemes));
+        output.append("):\n");
+        for(unsigned int i = 0; i < schemes.size(); i++){
+            //output.append("  " + schemes.at(i)->toString);
+        }
+
+        output.append("\n");
+
+        //FACTS
+        output.append("Facts(");
+        output += to_string(getSize(facts));
+        output.append("):\n");
+        for(unsigned int i = 0; i < facts.size(); i++){
+            //output.append("  " + facts.at(i)->toString);
+        }
+
+        output.append("\n");
+
+        //RULES
+        output.append("Rules(");
+        output += to_string(getSize(rules));
+        output.append("):\n");
+        for(unsigned int i = 0; i < rules.size(); i++){
+            //output.append("  " + rules.at(i)->toString);
+        }
+
+        output.append("\n");
+
+        //QUERIES
+        output.append("Queries(");
+        output += to_string(getSize(queries));
+        output.append("):\n");
+        for(unsigned int i = 0; i < queries.size(); i++){
+            //output.append("  " + queries.at(i)->toString);
+        }
+
+        output.append("\n");
+
+        //DOMAIN
+
         return output;
     }
 
+    void addScheme(Predicate* scheme){
+        schemes.push_back(scheme);
+    }
+
+    void addFact(Predicate* fact){
+        facts.push_back(fact);
+    }
+
+    void addRule(Rule* rule){
+        rules.push_back(rule);
+    }
+    void addQuery(Predicate* query){
+        queries.push_back(query);
+    }
+
+    int getSize(vector<Predicate*> input){ return input.size(); }
+    int getSize(vector<Rule*> input){ return input.size(); }
 };
 
 #endif //PROJECT_1_DATALOGPROGRAM_H

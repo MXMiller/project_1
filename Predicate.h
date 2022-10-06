@@ -24,6 +24,17 @@ public:
         return output;
     }
 
+    void setID(string input){
+        ID = input;
+    }
+
+    string getID(){
+        return ID;
+    }
+
+    void addParam(string input){
+        parameters.push_back(new Parameter(input));
+    }
 };
 
 #endif //PROJECT_1_PREDICATE_H

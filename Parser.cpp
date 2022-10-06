@@ -75,125 +75,162 @@ void Parser::queryList(){
 Predicate Parser::scheme(){
     //cout << "       IN scheme FUNCTION" << endl;
 
-    Predicate* p = new Predicate();
+    Predicate* scheme = new Predicate();
 
     match(TokenType::ID, i++);
+    scheme->setID(tokens.at(i)->getVal());
     match(TokenType::LEFT_PAREN, i++);
     match(TokenType::ID, i++);
-    idList();
+    scheme->addParam(tokens.at(i)->getVal());
+    idList(scheme);
     match(TokenType::RIGHT_PAREN, i++);
 
-    return *p;
+    datalog->addScheme(scheme);
+
+    return *scheme;
 }
 Predicate Parser::fact(){
     //cout << "       IN fact FUNCTION" << endl;
 
-    Predicate* p = new Predicate();
+    Predicate* fact = new Predicate();
 
     match(TokenType::ID, i++);
+    fact->setID(tokens.at(i)->getVal());
     match(TokenType::LEFT_PAREN, i++);
     match(TokenType::STRING, i++);
-    stringList();
+    fact->addParam(tokens.at(i)->getVal());
+    stringList(fact);
     match(TokenType::RIGHT_PAREN, i++);
     match(TokenType::PERIOD, i++);
 
-    return *p;
+    datalog->addFact(fact);
+
+    return *fact;
 }
 Rule Parser::rule(){
     //cout << "       IN rule FUNCTION" << endl;
 
-    Rule* r = new Rule();
+    Rule* rule = new Rule();
 
-    headPredicate();
+    headPredicate(rule);
     match(TokenType::COLON_DASH, i++);
-    predicate();
+    predicate(rule);
     if(tokens.at(i)->getTokenType() != TokenType::PERIOD){
-        predicateList();
+        predicateList(rule);
     }
     match(TokenType::PERIOD, i++);
 
-    return *r;
+    datalog->addRule(rule);
+
+    return *rule;
 }
 Predicate Parser::query(){
     //cout << "       IN query FUNCTION" << endl;
 
-    Predicate* p = new Predicate();
+    Predicate* query = new Predicate();
 
-    predicate();
+    predicate(query);
     match(TokenType::Q_MARK, i++);
 
-    return *p;
+    datalog->addQuery(query);
+
+    return *query;
 }
 
-void Parser::headPredicate(){
+void Parser::headPredicate(Rule* rule){
     //cout << "       IN headPredicate FUNCTION" << endl;
 
+    Predicate* head = new Predicate();
+
     match(TokenType::ID, i++);
+    head->setID(tokens.at(i)->getVal());
     match(TokenType::LEFT_PAREN, i++);
     match(TokenType::ID, i++);
-    idList();
+    head->addParam(tokens.at(i)->getVal());
+    idList(head);
+    match(TokenType::RIGHT_PAREN, i++);
+
+    rule->setHead(head);
+}
+void Parser::predicate(Rule* rule){
+    //cout << "       IN predicate FUNCTION" << endl;
+
+    Predicate* body = new Predicate();
+
+    match(TokenType::ID, i++);
+    body->setID(tokens.at(i)->getVal());
+    match(TokenType::LEFT_PAREN, i++);
+    parameter(body);
+    if(tokens.at(i)->getTokenType() != TokenType::RIGHT_PAREN){
+        parameterList(body);
+    }
     match(TokenType::RIGHT_PAREN, i++);
 }
-void Parser::predicate(){
+void Parser::predicate(Predicate* query){
     //cout << "       IN predicate FUNCTION" << endl;
 
     match(TokenType::ID, i++);
+    query->setID(tokens.at(i)->getVal());
     match(TokenType::LEFT_PAREN, i++);
-    parameter();
+    parameter(query);
     if(tokens.at(i)->getTokenType() != TokenType::RIGHT_PAREN){
-        parameterList();
+        parameterList(query);
     }
     match(TokenType::RIGHT_PAREN, i++);
 }
 
-void Parser::predicateList(){
+void Parser::predicateList(Rule* rule){
     //cout << "       IN predicateList FUNCTION" << endl;
 
     match(TokenType::COMMA, i++);
-    predicate();
+    predicate(rule);
 
     if(tokens.at(i)->getTokenType() == TokenType::COMMA){
-        predicateList();
+        predicateList(rule);
     }
 }
-void Parser::parameterList(){
+void Parser::parameterList(Predicate* input){
     //cout << "       IN parameterList FUNCTION" << endl;
 
     match(TokenType::COMMA, i++);
-    parameter();
+    parameter(input);
 
     if(tokens.at(i)->getTokenType() == TokenType::COMMA){
-        parameterList();
+        parameterList(input);
     }
 }
-void Parser::stringList(){
+void Parser::stringList(Predicate* fact){
     //cout << "       IN stringList FUNCTION" << endl;
 
     match(TokenType::COMMA, i++);
     match(TokenType::STRING, i++);
+    fact->addParam(tokens.at(i)->getVal());
 
     if(tokens.at(i)->getTokenType() == TokenType::COMMA){
-        stringList();
+        stringList(fact);
     }
 }
-void Parser::idList(){
+void Parser::idList(Predicate* input){
     //cout << "       IN idList FUNCTION" << endl;
 
     match(TokenType::COMMA, i++);
     match(TokenType::ID, i++);
+    input->addParam(tokens.at(i)->getVal());
 
     if(tokens.at(i)->getTokenType() == TokenType::COMMA){
-        idList();
+        idList(input);
     }
 }
-void Parser::parameter(){
+void Parser::parameter(Predicate* input){
     //cout << "       IN parameter FUNCTION" << endl;
 
     if((tokens.at(i)->getTokenType()) == TokenType::STRING){
         //cout << endl << "match: " << tokens.at(i)->getType() << endl;
+        input->addParam(tokens.at(i)->getVal());
         i++;
     }else if((tokens.at(i)->getTokenType()) == TokenType::ID){
         //cout << endl << "match: " << tokens.at(i)->getType() << endl;
+        input->addParam(tokens.at(i)->getVal());
         i++;
     }else{
         //cout << endl << "   fail: " << tokens.at(i)->getType() << endl;
@@ -223,23 +260,6 @@ DatalogProgram* Parser::parse(){
 }
 
 string Parser::toString() {
-
-    string output = "";
-
-    //output the list of schemes, facts, rules, queries, and domain
-    /*
-    for(unsigned int i = 0; i < tokens.size(); i++){
-        output.push_back('(');
-        output.append((tokens.at(i)->getType()) + ',' + '"');
-        output.append(tokens.at(i)->getVal() + '"' + ',');
-        output += to_string(tokens.at(i)->getLine());
-        output.append(")\n");
-    }
-
-    output.append("Total Tokens = ");
-    output += to_string(tokens.size());
-    */
-
-    return output;
+    return datalog->toString();
 }
 
