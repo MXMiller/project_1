@@ -12,15 +12,15 @@ Parser::~Parser() {
 
 void Parser::match(TokenType type, int i){
     if((tokens.at(i)->getTokenType()) == type){
-        cout << endl << "match: " << tokens.at(i)->getType() << endl;
+        //cout << endl << "match: " << tokens.at(i)->getType() << endl;
     }else{
-        cout << endl << "   fail: " << tokens.at(i)->getType() << endl;
-        //throw error_code;
+        //cout << endl << "   fail: " << tokens.at(i)->getType() << endl;
+        throw (tokens.at(i));
     }
 }
 
 void Parser::datalogProgram(){
-    cout << "       IN datalogProgram FUNCTION" << endl;
+    //cout << "       IN datalogProgram FUNCTION" << endl;
 
     match(TokenType::SCHEMES, i++);
     match(TokenType::COLON, i++);
@@ -40,64 +40,93 @@ void Parser::datalogProgram(){
 }
 
 void Parser::schemeList(){
-    cout << "       IN schemeList FUNCTION" << endl;
+    //cout << "       IN schemeList FUNCTION" << endl;
     scheme();
-    //schemeList();
+
+    if(tokens.at(i)->getTokenType() == TokenType::ID){
+        schemeList();
+    }
 }
 void Parser::factList(){
-    cout << "       IN factList FUNCTION" << endl;
+    //cout << "       IN factList FUNCTION" << endl;
     fact();
-    //factList();
+
+    if(tokens.at(i)->getTokenType() == TokenType::ID){
+        factList();
+    }
 }
 void Parser::ruleList(){
-    cout << "       IN ruleList FUNCTION" << endl;
+    //cout << "       IN ruleList FUNCTION" << endl;
     rule();
-    //ruleList();
+
+    if(tokens.at(i)->getTokenType() == TokenType::RULES){
+        ruleList();
+    }
 }
 void Parser::queryList(){
-    cout << "       IN queryList FUNCTION" << endl;
+    //cout << "       IN queryList FUNCTION" << endl;
     query();
-    //queryList();
+
+    if(tokens.at(i)->getTokenType() == TokenType::ID){
+        queryList();
+    }
 }
 
 Predicate Parser::scheme(){
-    cout << "       IN scheme FUNCTION" << endl;
+    //cout << "       IN scheme FUNCTION" << endl;
+
+    Predicate* p = new Predicate();
 
     match(TokenType::ID, i++);
     match(TokenType::LEFT_PAREN, i++);
     match(TokenType::ID, i++);
     idList();
     match(TokenType::RIGHT_PAREN, i++);
+
+    return *p;
 }
 Predicate Parser::fact(){
-    cout << "       IN fact FUNCTION" << endl;
+    //cout << "       IN fact FUNCTION" << endl;
+
+    Predicate* p = new Predicate();
 
     match(TokenType::ID, i++);
     match(TokenType::LEFT_PAREN, i++);
-    match(TokenType::ID, i++);
     match(TokenType::STRING, i++);
     stringList();
     match(TokenType::RIGHT_PAREN, i++);
     match(TokenType::PERIOD, i++);
+
+    return *p;
 }
 Rule Parser::rule(){
-    cout << "       IN rule FUNCTION" << endl;
+    //cout << "       IN rule FUNCTION" << endl;
+
+    Rule* r = new Rule();
 
     headPredicate();
     match(TokenType::COLON_DASH, i++);
     predicate();
-    predicateList();
+    if(tokens.at(i)->getTokenType() != TokenType::PERIOD){
+        predicateList();
+    }
     match(TokenType::PERIOD, i++);
+
+    return *r;
 }
 Predicate Parser::query(){
-    cout << "       IN query FUNCTION" << endl;
+    //cout << "       IN query FUNCTION" << endl;
+
+    Predicate* p = new Predicate();
 
     predicate();
     match(TokenType::Q_MARK, i++);
+
+    return *p;
 }
 
 void Parser::headPredicate(){
-    cout << "       IN headPredicate FUNCTION" << endl;
+    //cout << "       IN headPredicate FUNCTION" << endl;
 
     match(TokenType::ID, i++);
     match(TokenType::LEFT_PAREN, i++);
@@ -106,47 +135,70 @@ void Parser::headPredicate(){
     match(TokenType::RIGHT_PAREN, i++);
 }
 void Parser::predicate(){
-    cout << "       IN predicate FUNCTION" << endl;
+    //cout << "       IN predicate FUNCTION" << endl;
 
     match(TokenType::ID, i++);
     match(TokenType::LEFT_PAREN, i++);
     parameter();
-    parameterList();
+    if(tokens.at(i)->getTokenType() != TokenType::RIGHT_PAREN){
+        parameterList();
+    }
     match(TokenType::RIGHT_PAREN, i++);
 }
 
 void Parser::predicateList(){
-    cout << "       IN predicateList FUNCTION" << endl;
+    //cout << "       IN predicateList FUNCTION" << endl;
 
     match(TokenType::COMMA, i++);
     predicate();
-    //predicateList();
+
+    if(tokens.at(i)->getTokenType() == TokenType::COMMA){
+        predicateList();
+    }
 }
 void Parser::parameterList(){
-    cout << "       IN parameterList FUNCTION" << endl;
+    //cout << "       IN parameterList FUNCTION" << endl;
 
     match(TokenType::COMMA, i++);
     parameter();
-    //parameterList();
+
+    if(tokens.at(i)->getTokenType() == TokenType::COMMA){
+        parameterList();
+    }
 }
 void Parser::stringList(){
-    cout << "       IN stringList FUNCTION" << endl;
+    //cout << "       IN stringList FUNCTION" << endl;
 
     match(TokenType::COMMA, i++);
     match(TokenType::STRING, i++);
-    //stringList();
+
+    if(tokens.at(i)->getTokenType() == TokenType::COMMA){
+        stringList();
+    }
 }
 void Parser::idList(){
-    cout << "       IN idList FUNCTION" << endl;
+    //cout << "       IN idList FUNCTION" << endl;
 
     match(TokenType::COMMA, i++);
     match(TokenType::ID, i++);
-    //idList();
+
+    if(tokens.at(i)->getTokenType() == TokenType::COMMA){
+        idList();
+    }
 }
 void Parser::parameter(){
-    cout << "       IN parameter FUNCTION" << endl;
+    //cout << "       IN parameter FUNCTION" << endl;
 
-    match(TokenType::STRING, i++);
+    if((tokens.at(i)->getTokenType()) == TokenType::STRING){
+        //cout << endl << "match: " << tokens.at(i)->getType() << endl;
+        i++;
+    }else if((tokens.at(i)->getTokenType()) == TokenType::ID){
+        //cout << endl << "match: " << tokens.at(i)->getType() << endl;
+        i++;
+    }else{
+        //cout << endl << "   fail: " << tokens.at(i)->getType() << endl;
+        throw (tokens.at(i));
+    }
 }
 
 DatalogProgram* Parser::parse(){
@@ -154,18 +206,17 @@ DatalogProgram* Parser::parse(){
     //cout << "I am in the parser" << endl;
 
     //1. WIP check syntax. make sure you have the right things in the right order
-
     //2. write classes and data structures
-
     //3. write code to create data structures
 
     try {
         datalogProgram();
-        //throw "error"; // Throw an exception when a problem arise
+        cout << "Success!" << endl;
     }
-    catch (string error) {
+    catch (Token* token) {
         // Block of code to handle errors
-        cout << "Failure" << endl;
+        cout << "Failure!" << endl;
+        cout << "  (" << token->getType() << ",'" << token->getVal() << "'," << token->getLine() << ")" << endl;
     }
 
     return datalog;

@@ -51,7 +51,6 @@ public:
     void stringList();
     void idList();
     void parameter();
-
 };
 
 #endif //PROJECT_1_PARSER_H

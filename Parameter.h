@@ -18,8 +18,7 @@ public:
     ~Parameter(){}
 
     string toString(){
-        string output = "";
-        return output;
+        return p;
     }
 };
 
