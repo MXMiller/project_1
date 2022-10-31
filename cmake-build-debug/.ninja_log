@@ -4,7 +4,7 @@
 4	705	6867333088836231	CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj	be1c4e5b1ad42d3d
 693	1447	6867333096316218	CMakeFiles/project_1.dir/Q_MarkAutomaton.cpp.obj	5be75a07f80e0a87
 8	692	6867333088736487	CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj	1ab1d1333da1d7c0
-4	1117	6867987298670310	CMakeFiles/project_1.dir/main.cpp.obj	6ba9368c57a34a38
+6	1101	6868024710683285	CMakeFiles/project_1.dir/main.cpp.obj	6ba9368c57a34a38
 24	1050	6867333092426622	CMakeFiles/project_1.dir/Lexer.cpp.obj	af13c1dc1e579b91
 699	1403	6867333095937235	CMakeFiles/project_1.dir/CommaAutomaton.cpp.obj	ddd1c5cd492d18be
 508	1276	6867333094660767	CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj	81b8f89e84d08d19
@@ -13,7 +13,7 @@
 1060	1787	6867333099826827	CMakeFiles/project_1.dir/MultiplyAutomaton.cpp.obj	dd3b792200fde12f
 1448	2131	6867333103267631	CMakeFiles/project_1.dir/QueriesAutomaton.cpp.obj	e248f650d1fdb165
 1787	2419	6867333106149913	CMakeFiles/project_1.dir/IdAutomaton.cpp.obj	b312160d8909ead3
-4	900	6867994990899423	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
+12	1639	6868024715879381	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
 1276	1964	6867333101572175	CMakeFiles/project_1.dir/AddAutomaton.cpp.obj	31bbbf43875b7177
 705	1478	6867333096645335	CMakeFiles/project_1.dir/SchemesAutomaton.cpp.obj	9ffffa46bca7dded
 1404	2078	6867333102739038	CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj	5b704005d66dfb12
@@ -21,15 +21,4 @@
 1964	2548	6867333107446443	CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj	4e0e4987a1346e54
 2079	2635	6867333108324101	CMakeFiles/project_1.dir/StringAutomaton.cpp.obj	a458dc2408861b35
 1709	2362	6867333105571462	CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj	1030fe46cea45aae
-901	1170	6867994993582153	project_1.exe	4f89a45435fcdda8
-5	1364	6867995515092338	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
-1365	2111	6867995520966622	project_1.exe	4f89a45435fcdda8
-6	1460	6867997430897450	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
-1460	2336	6867997437500454	project_1.exe	4f89a45435fcdda8
-8	4233	6868007483084927	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
-4234	4847	6868007489198993	project_1.exe	4f89a45435fcdda8
-7	1392	6868008115148062	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
-1392	1749	6868008118698584	project_1.exe	4f89a45435fcdda8
-6	1101	6868024710683285	CMakeFiles/project_1.dir/main.cpp.obj	6ba9368c57a34a38
-12	1639	6868024715879381	CMakeFiles/project_1.dir/Parser.cpp.obj	a556e003d89e74ff
 1640	2113	6868024720666582	project_1.exe	4f89a45435fcdda8
