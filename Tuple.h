@@ -10,11 +10,15 @@ using namespace std;
 class Tuple
 {
 private:
-    vector<string> rowVals;
+    vector<Parameter*> rowVals;
 
 public:
     Tuple(){}
     ~Tuple(){}
+
+    void setRowVals(vector<Parameter*> input){
+        rowVals = input;
+    }
 };
 
 #endif //PROJECT_1_TUPLE_H

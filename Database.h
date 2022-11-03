@@ -19,9 +19,17 @@ public:
     Database(){}
     ~Database(){}
 
-    void AddRel(Relation newRelation);
-    Relation* getRel(string name);
-    Relation getRelCopy(string name);
+    void addRel(Relation* newRelation){
+        relations.insert(pair<string, Relation>(newRelation->getName(), *newRelation));
+    }
+
+    Relation* getRel(string name){
+        return &relations[name];
+    }
+
+    Relation getRelCopy(string name){
+        return relations[name];
+    }
 };
 
 #endif //PROJECT_1_DATABASE_H

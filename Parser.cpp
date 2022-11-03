@@ -292,8 +292,8 @@ DatalogProgram* Parser::parse(){
 
     try {
         datalogProgram();
-        cout << "Success!" << endl;
-        cout << toString();
+        //cout << "Success!" << endl;
+        //cout << toString();
     }
     catch (Token* token) {
         // Block of code to handle errors

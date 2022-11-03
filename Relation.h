@@ -18,7 +18,7 @@ private:
     set<Tuple*> tuples;
 
 public:
-    Relation(){}
+    Relation() = default;
     Relation(string name, Header colNames){
         this->name = name;
         this->colNames = colNames;
@@ -32,10 +32,11 @@ public:
         tuples.insert(newTuple);
     }
 
-    Relation select1(int i, string val);
-    Relation select2(int i1, int i2);
+    Relation select(int i, string val);
+    Relation select(int i1, int i2);
     Relation project(vector<int> columns);
     Relation rename(vector<string> newColNames);
+    //Relation Join(Relation other);
 
 };
 

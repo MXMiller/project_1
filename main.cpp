@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Lexer.h"
 #include "Parser.h"
+#include "Interpreter.h"
 
 using namespace std;
 
@@ -37,7 +38,8 @@ int main(int argc, char** argv) {
     Parser* parser = new Parser(lexer->getTokens());
     parser->parse();
 
-    //cout << lexer->toString();
+    Interpreter* interpreter = new Interpreter(parser->getDatalog());
+    interpreter->interpret();
 
     delete lexer;
 

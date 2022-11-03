@@ -101,6 +101,22 @@ public:
             }
         }
     }
+
+    vector<Predicate*> getSchemes() {
+        return schemes;
+    }
+
+    vector<Predicate*> getFacts() {
+        return facts;
+    }
+
+    vector<Rule*> getRules() {
+        return rules;
+    }
+
+    vector<Predicate*> getQueries() {
+        return queries;
+    }
 };
 
 #endif //PROJECT_1_DATALOGPROGRAM_H

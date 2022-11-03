@@ -38,6 +38,9 @@ public:
         return parameters.at(i)->getParam();
     }
 
+    vector<Parameter*> getParams(){
+        return parameters;
+    }
 
     string toString(){
         string output = "";

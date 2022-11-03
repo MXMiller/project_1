@@ -52,6 +52,10 @@ public:
     void stringList(Predicate* fact);
     void idList(Predicate* input);
     void parameter(Predicate* input);
+
+    DatalogProgram* getDatalog(){
+        return datalog;
+    }
 };
 
 #endif //PROJECT_1_PARSER_H
