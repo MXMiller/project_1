@@ -8,25 +8,25 @@
 #include "Relation.h"
 
 Relation Relation::select(int i, string val){
-    Relation newR;
+    Relation selectR;
 
-    return newR;
+    return selectR;
 }
 
 Relation Relation::select(int i1, int i2){
-    Relation newR;
+    Relation selectR;
 
-    return newR;
+    return selectR;
 }
 
 Relation Relation::project(vector<int> columns){
-    Relation newR;
+    Relation projectR;
 
-    return newR;
+    return projectR;
 }
 
 Relation Relation::rename(vector<string> newColNames){
-    Relation newR;
+    Relation renameR;
 
-    return newR;
+    return renameR;
 }

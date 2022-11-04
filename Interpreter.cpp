@@ -61,22 +61,22 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     vector<int> matchIndexes;
     vector<int> varIndexes;
 
-    for(unsigned int j = 0; j < query->getParams().size(); j++){
+    for(unsigned int i = 0; i < query->getParams().size(); i++){
 
-        Parameter p = query->getParam(j);
+        Parameter p = query->getParam(i);
 
         if(p.isCon() == true){ // parameter is a constant
-            newR.select(j, query->getParam(j));
+            newR.select(i, query->getParam(i));
         }
         else if(p.isCon() == false){ // parameter is a variable
-            string first = query->getParam(j);
+            string first = query->getParam(i);
 
-            for(int k = 0; k < query->getParams().size(); k++){
-                if(query->getParam(j) == query->getParam(k)){
-                    newR.select(j, k);
-                    matchIndexes.push_back(k);
+            for(int j = 0; j < query->getParams().size(); j++){
+                if(query->getParam(i) == query->getParam(j)){
+                    newR.select(i, j);
+                    matchIndexes.push_back(j);
                 } else {
-                    varIndexes.push_back(j);
+                    varIndexes.push_back(i);
                 }
             }
         }
