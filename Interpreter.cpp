@@ -1,5 +1,6 @@
 #include <vector>
 #include "DatalogProgram.h"
+#include "Parser.h"
 #include "Predicate.h"
 #include "Interpreter.h"
 #include "Relation.h"
@@ -49,14 +50,48 @@ void Interpreter::interpretQueries(){
     vector<Predicate*> queries = program->getQueries();
 
     for(unsigned int i  = 0; i < queries.size(); i++){
-        Relation newR = database->getRelCopy(queries.at(i)->getID());
+        evaluatePredicate(queries.at(i));
+    }
+}
 
-        for(unsigned int j = 0; i < queries.at(i)->getParams().size(); j++){
+Relation Interpreter::evaluatePredicate(Predicate* query){
 
+    Relation newR = database->getRelCopy(query->getID());
+
+    vector<int> matchIndexes;
+    vector<int> varIndexes;
+
+    for(unsigned int j = 0; j < query->getParams().size(); j++){
+
+        Parameter p = query->getParam(j);
+
+        if(p.isCon() == true){ // parameter is a constant
+            newR.select(j, query->getParam(j));
+        }
+        else if(p.isCon() == false){ // parameter is a variable
+            string first = query->getParam(j);
+
+            for(int k = 0; k < query->getParams().size(); k++){
+                if(query->getParam(j) == query->getParam(k)){
+                    newR.select(j, k);
+                    matchIndexes.push_back(k);
+                } else {
+                    varIndexes.push_back(j);
+                }
+            }
         }
     }
+
+    //use matchIndexes project out a column for each variable from the relation
+    //use varIndexes to rename the relations header column names to query variables
+
+    return newR;
 }
 
 string Interpreter::toString(){
     cout << endl << "       IN THE toString FUNCTION" << endl << endl;
+
+    string output = "";
+
+    return output;
 }

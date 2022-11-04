@@ -22,18 +22,23 @@ public:
     }
     ~Interpreter(){}
 
-    void interpret(){
+    Database* interpret(){
+
         interpretSchemes();
         interpretFacts();
         interpretQueries();
 
         toString();
+
+        return database;
     }
 
     void interpretSchemes();
     void interpretFacts();
     //void interpretRules();
     void interpretQueries();
+
+    Relation evaluatePredicate(Predicate* query);
 
     string toString();
 };

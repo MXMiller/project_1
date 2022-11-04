@@ -32,6 +32,12 @@ public:
         parameters.push_back(p);
     }
 
+    void addParam(string input, bool c){
+        Parameter* p = new Parameter(input);
+        p->setConstant();
+        parameters.push_back(p);
+    }
+
     int getSize(){ return parameters.size(); }
 
     string getParam(int i){

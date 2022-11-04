@@ -270,7 +270,7 @@ void Parser::parameter(Predicate* input){
 
     if((tokens.at(i)->getTokenType()) == TokenType::STRING){
         //cout << endl << "match: " << tokens.at(i)->getType() << endl;
-        input->addParam(tokens.at(i)->getVal());
+        input->addParam(tokens.at(i)->getVal(), true);
         i++;
     }else if((tokens.at(i)->getTokenType()) == TokenType::ID){
         //cout << endl << "match: " << tokens.at(i)->getType() << endl;

@@ -210,6 +210,13 @@ build CMakeFiles/project_1.dir/Interpreter.cpp.obj: CXX_COMPILER__project_1_Debu
   OBJECT_DIR = CMakeFiles\project_1.dir
   OBJECT_FILE_DIR = CMakeFiles\project_1.dir
 
+build CMakeFiles/project_1.dir/Relation.cpp.obj: CXX_COMPILER__project_1_Debug C$:/Users/Max$ Miller/Desktop/School/FALL$ 2022/cs$ 236/project_1.1/Relation.cpp || cmake_object_order_depends_target_project_1
+  DEP_FILE = CMakeFiles\project_1.dir\Relation.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -I"C:/Users/Max Miller/Desktop/School/FALL 2022/cs 236/project_1.1/."
+  OBJECT_DIR = CMakeFiles\project_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\project_1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target project_1
@@ -218,7 +225,7 @@ build CMakeFiles/project_1.dir/Interpreter.cpp.obj: CXX_COMPILER__project_1_Debu
 #############################################
 # Link the executable project_1.exe
 
-build project_1.exe: CXX_EXECUTABLE_LINKER__project_1_Debug CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj CMakeFiles/project_1.dir/Lexer.cpp.obj CMakeFiles/project_1.dir/main.cpp.obj CMakeFiles/project_1.dir/Token.cpp.obj CMakeFiles/project_1.dir/PeriodAutomaton.cpp.obj CMakeFiles/project_1.dir/CommaAutomaton.cpp.obj CMakeFiles/project_1.dir/Q_MarkAutomaton.cpp.obj CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj CMakeFiles/project_1.dir/Right_ParenAutomaton.cpp.obj CMakeFiles/project_1.dir/MultiplyAutomaton.cpp.obj CMakeFiles/project_1.dir/AddAutomaton.cpp.obj CMakeFiles/project_1.dir/SchemesAutomaton.cpp.obj CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj CMakeFiles/project_1.dir/RulesAutomaton.cpp.obj CMakeFiles/project_1.dir/QueriesAutomaton.cpp.obj CMakeFiles/project_1.dir/IdAutomaton.cpp.obj CMakeFiles/project_1.dir/StringAutomaton.cpp.obj CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj CMakeFiles/project_1.dir/Parser.cpp.obj CMakeFiles/project_1.dir/Interpreter.cpp.obj
+build project_1.exe: CXX_EXECUTABLE_LINKER__project_1_Debug CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj CMakeFiles/project_1.dir/Lexer.cpp.obj CMakeFiles/project_1.dir/main.cpp.obj CMakeFiles/project_1.dir/Token.cpp.obj CMakeFiles/project_1.dir/PeriodAutomaton.cpp.obj CMakeFiles/project_1.dir/CommaAutomaton.cpp.obj CMakeFiles/project_1.dir/Q_MarkAutomaton.cpp.obj CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj CMakeFiles/project_1.dir/Right_ParenAutomaton.cpp.obj CMakeFiles/project_1.dir/MultiplyAutomaton.cpp.obj CMakeFiles/project_1.dir/AddAutomaton.cpp.obj CMakeFiles/project_1.dir/SchemesAutomaton.cpp.obj CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj CMakeFiles/project_1.dir/RulesAutomaton.cpp.obj CMakeFiles/project_1.dir/QueriesAutomaton.cpp.obj CMakeFiles/project_1.dir/IdAutomaton.cpp.obj CMakeFiles/project_1.dir/StringAutomaton.cpp.obj CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj CMakeFiles/project_1.dir/Parser.cpp.obj CMakeFiles/project_1.dir/Interpreter.cpp.obj CMakeFiles/project_1.dir/Relation.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\project_1.dir

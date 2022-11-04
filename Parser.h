@@ -15,7 +15,7 @@ private:
 
     DatalogProgram* datalog = new DatalogProgram();
 
-    std::vector<Token*> tokens;
+    vector<Token*> tokens;
 
     int i = 0;
 

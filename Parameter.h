@@ -11,7 +11,8 @@ class Parameter
 {
 private:
 
- string p;
+    string p;
+    bool isConstant = false;
 
 public:
     Parameter(string input){
@@ -21,6 +22,14 @@ public:
 
     string getParam(){
         return p;
+    }
+
+    void setConstant(){
+        isConstant = true;
+    }
+
+    bool isCon(){
+        return isConstant;
     }
 };
 
