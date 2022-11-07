@@ -28,12 +28,17 @@ public:
     string getName(){
         return name;
     }
+
+    set<Tuple*> getTuples(){
+        return tuples;
+    }
+
     void addTuple(Tuple* newTuple){
         tuples.insert(newTuple);
     }
 
-    Relation select(int i, string val);
-    Relation select(int i1, int i2);
+    Relation select1(int columnI, string val);
+    Relation select2(int columnI1, int columnI2);
     Relation project(vector<int> columns);
     Relation rename(vector<string> newColNames);
     //Relation Join(Relation other);

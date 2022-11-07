@@ -24,6 +24,10 @@ public:
         return p;
     }
 
+    void setParam(string input){
+        p = input;
+    }
+
     void setConstant(){
         isConstant = true;
     }

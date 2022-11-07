@@ -19,6 +19,10 @@ public:
     void setRowVals(vector<Parameter*> input){
         rowVals = input;
     }
+
+    string getRowVal(int i){
+        return rowVals.at(i)->getParam();
+    }
 };
 
 #endif //PROJECT_1_TUPLE_H

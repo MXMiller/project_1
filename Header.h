@@ -21,6 +21,14 @@ public:
     void setColName(vector<Parameter*> input){
         colNames = input;
     }
+
+    Parameter* getColName(int i){
+        return colNames.at(i);
+    }
+
+    int getSize(){
+        return colNames.size();
+    }
 };
 
 #endif //PROJECT_1_HEADER_H

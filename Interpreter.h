@@ -28,8 +28,6 @@ public:
         interpretFacts();
         interpretQueries();
 
-        toString();
-
         return database;
     }
 
@@ -40,7 +38,7 @@ public:
 
     Relation evaluatePredicate(Predicate* query);
 
-    string toString();
+    void toString(Relation relation, Predicate* query);
 };
 
 #endif //PROJECT_1_INTERPRETER_H

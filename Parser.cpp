@@ -114,7 +114,7 @@ Predicate Parser::fact(){
     match(TokenType::LEFT_PAREN, i);
     i++;
     match(TokenType::STRING, i);
-    fact->addParam(tokens.at(i)->getVal());
+    fact->addParam(tokens.at(i)->getVal(), true);
     i++;
     stringList(fact);
     match(TokenType::RIGHT_PAREN, i);
@@ -245,7 +245,7 @@ void Parser::stringList(Predicate* fact){
     match(TokenType::COMMA, i);
     i++;
     match(TokenType::STRING, i);
-    fact->addParam(tokens.at(i)->getVal());
+    fact->addParam(tokens.at(i)->getVal(), true);
     i++;
 
     if(tokens.at(i)->getTokenType() == TokenType::COMMA){

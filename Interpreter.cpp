@@ -1,6 +1,5 @@
 #include <vector>
 #include "DatalogProgram.h"
-#include "Parser.h"
 #include "Predicate.h"
 #include "Interpreter.h"
 #include "Relation.h"
@@ -11,7 +10,7 @@ using namespace std;
 
 void Interpreter::interpretSchemes(){
 
-    cout << endl << "       IN THE interpretSchemes FUNCTION" << endl << endl;
+    //cout << endl << "       IN THE interpretSchemes FUNCTION" << endl << endl;
 
     vector<Predicate*> schemes = program->getSchemes();
 
@@ -28,7 +27,7 @@ void Interpreter::interpretSchemes(){
 
 void Interpreter::interpretFacts(){
 
-    cout << endl << "       IN THE interpretFacts FUNCTION" << endl << endl;
+    //cout << endl << "       IN THE interpretFacts FUNCTION" << endl << endl;
 
     vector<Predicate*> facts = program->getFacts();
 
@@ -45,12 +44,14 @@ void Interpreter::interpretFacts(){
 
 void Interpreter::interpretQueries(){
 
-    cout << endl << "       IN THE interpretQueries FUNCTION" << endl << endl;
+    //cout << endl << "       IN THE interpretQueries FUNCTION" << endl << endl;
 
     vector<Predicate*> queries = program->getQueries();
 
     for(unsigned int i  = 0; i < queries.size(); i++){
-        evaluatePredicate(queries.at(i));
+        Relation result = evaluatePredicate(queries.at(i));
+
+        toString(result, queries.at(i));
     }
 }
 
@@ -58,40 +59,73 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
 
     Relation newR = database->getRelCopy(query->getID());
 
-    vector<int> matchIndexes;
-    vector<int> varIndexes;
+    vector<int> varFirst;
+    vector<string> varIndexes;
 
     for(unsigned int i = 0; i < query->getParams().size(); i++){
 
         Parameter p = query->getParam(i);
 
         if(p.isCon() == true){ // parameter is a constant
-            newR.select(i, query->getParam(i));
+            newR = newR.select1(i, query->getParam(i));
         }
         else if(p.isCon() == false){ // parameter is a variable
             string first = query->getParam(i);
 
-            for(int j = 0; j < query->getParams().size(); j++){
+            varFirst.push_back(i);
+
+            for(unsigned int j = 0; j < query->getParams().size(); j++){
                 if(query->getParam(i) == query->getParam(j)){
-                    newR.select(i, j);
-                    matchIndexes.push_back(j);
+                    newR = newR.select2(i, j);
                 } else {
-                    varIndexes.push_back(i);
+                    varIndexes.push_back(query->getParam(i));
                 }
             }
         }
     }
 
-    //use matchIndexes project out a column for each variable from the relation
+    //use varFirst project out a column for each variable from the relation
+    newR = newR.project(varFirst);
+
     //use varIndexes to rename the relations header column names to query variables
+    newR = newR.rename(varIndexes);
 
     return newR;
 }
 
-string Interpreter::toString(){
-    cout << endl << "       IN THE toString FUNCTION" << endl << endl;
+void Interpreter::toString(Relation relation, Predicate* query){
+    //cout << endl << "       IN THE toString FUNCTION" << endl << endl;
 
     string output = "";
 
-    return output;
+    //output the query stuff
+    output += query->getID() + "(";
+
+    for(unsigned int i = 0; i < query->getSize(); i++){
+        output += query->getParam(i);
+        if(i < query->getSize() - 1){
+            output += ",";
+        }
+    }
+
+    output += ")? ";
+
+    //output the relations stuff
+
+    output += "\n  ";
+
+    for(unsigned int i = 0; i < query->getSize(); i++){ //maybe use the relation size
+        if(query->getParams().at(i)->isCon() == false){ //and it is a YES
+
+            output += query->getParam(i) + "=" + "\'the string\'";
+
+            if(i < query->getSize() - 1){
+                output += ",";
+            }
+        }
+    }
+
+    output += "\n";
+
+    cout << output;
 }
