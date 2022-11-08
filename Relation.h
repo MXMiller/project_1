@@ -15,7 +15,7 @@ class Relation
 private:
     string name;
     Header colNames;
-    set<Tuple*> tuples;
+    set<Tuple> tuples;
 
 public:
     Relation() = default;
@@ -29,11 +29,19 @@ public:
         return name;
     }
 
-    set<Tuple*> getTuples(){
+    set<Tuple> getTuples(){
         return tuples;
     }
 
-    void addTuple(Tuple* newTuple){
+    void setTuples(set<Tuple> input){
+        tuples = input;
+    }
+
+    void setName(string input){
+        name = input;
+    }
+
+    void addTuple(Tuple newTuple){
         tuples.insert(newTuple);
     }
 

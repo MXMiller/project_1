@@ -9,14 +9,14 @@
 
 
 Relation Relation::select1(int columnI, string val){
+
     Relation* selectR = new Relation(name, colNames);
 
+    for(set<Tuple>::iterator i = tuples.begin(); i != tuples.end(); ++i){
 
-    for(set<Tuple*>::iterator i = tuples.begin(); i != tuples.end(); ++i){
+        Tuple curr = *i;
 
-        Tuple* curr = *i;
-
-        if(curr->getRowVal(columnI) == val){
+        if(curr.getRowVal(columnI) == val){
             selectR->addTuple(curr);
         }
     }
@@ -25,13 +25,14 @@ Relation Relation::select1(int columnI, string val){
 }
 
 Relation Relation::select2(int columnI1, int columnI2){
+
     Relation* selectR = new Relation(name, colNames);
 
-    for(set<Tuple*>::iterator i = tuples.begin(); i != tuples.end(); ++i){
+    for(set<Tuple>::iterator i = tuples.begin(); i != tuples.end(); ++i){
 
-        Tuple* curr = *i;
+        Tuple curr = *i;
 
-        if(curr->getRowVal(columnI1) == curr->getRowVal(columnI2)){
+        if(curr.getRowVal(columnI1) == curr.getRowVal(columnI2)){
             selectR->addTuple(curr);
         }
     }
@@ -60,35 +61,46 @@ Relation Relation::project(vector<int> columns){
 
     //get the right column values
 
-    int i = 0;
 
-    for(set<Tuple*>::iterator t = tuples.begin(); t != tuples.end(); ++t){
+    for(set<Tuple>::iterator t = tuples.begin(); t != tuples.end(); t++){
 
-        Tuple* curr = *t;
+        Tuple curr = *t;
         Tuple newT;
 
         vector<Parameter*> newVals;
 
-        for(unsigned int j = 0; j < columns.size(); j++){
-            if(i == columns.at(j)){
-                //found one of the columns
-                string tupleVal = curr->getRowVal(i);
-                Parameter* newVal = new Parameter(tupleVal);
-                newVals.push_back(newVal);
+        //newT.setRowVals(newVals);
+
+        for(unsigned int i = 0; i < curr.getSize(); i++){
+            for(unsigned int j = 0; j < columns.size(); j++){
+                //what is the first thing supposed to be?
+                if(i == columns.at(j)){
+                    //found one of the columns
+                    string tupleVal = curr.getRowVal(i);
+                    Parameter newVal(tupleVal);
+                    if(newVal.getParam().at(0) == '\''){
+                        newVal.setConstant();
+                    }
+                    newVals.push_back(&newVal);
+                }
             }
         }
 
         newT.setRowVals(newVals);
 
-        projectR->addTuple(&newT);
-
-        i++;
+        projectR->addTuple(newT);
     }
 
     return *projectR;
 }
 
 Relation Relation::rename(vector<string> newColNames){
+
+    //the tuples that are sent into this function aren't the right tuples
+
+    Relation* renameR;
+    renameR->setTuples(tuples);
+    renameR->setName(name);
 
     vector<Parameter*> newN;
 
@@ -99,7 +111,8 @@ Relation Relation::rename(vector<string> newColNames){
 
     Header newHeader;
     newHeader.setColName(newN);
-    Relation* renameR = new Relation(name, newHeader);
+
+
 
     return *renameR;
 }

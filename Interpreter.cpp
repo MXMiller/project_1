@@ -38,7 +38,7 @@ void Interpreter::interpretFacts(){
 
         Relation* r = database->getRel(facts.at(i)->getID());
 
-        r->addTuple(tuple);
+        r->addTuple(*tuple);
     }
 }
 
@@ -85,12 +85,16 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     }
 
     //use varFirst project out a column for each variable from the relation
-    newR = newR.project(varFirst);
+    Relation newR2 = newR.project(varFirst);
 
     //use varIndexes to rename the relations header column names to query variables
-    newR = newR.rename(varIndexes);
 
-    return newR;
+    //the getTuples() function destroys newR2's tuples for some reason
+    //set<Tuple*> theTuples = newR2.getTuples();
+
+    Relation newR3  = newR2.rename(varIndexes);
+
+    return newR3;
 }
 
 void Interpreter::toString(Relation relation, Predicate* query){
@@ -110,6 +114,10 @@ void Interpreter::toString(Relation relation, Predicate* query){
 
     output += ")? ";
 
+    //is the query true?
+
+
+
     //output the relations stuff
 
     output += "\n  ";
@@ -117,7 +125,12 @@ void Interpreter::toString(Relation relation, Predicate* query){
     for(unsigned int i = 0; i < query->getSize(); i++){ //maybe use the relation size
         if(query->getParams().at(i)->isCon() == false){ //and it is a YES
 
-            output += query->getParam(i) + "=" + "\'the string\'";
+            for(set<Tuple>::iterator t = relation.getTuples().begin(); t != relation.getTuples().end(); t++){
+                Tuple curr = *t;
+                for(unsigned int j = 0; j < curr.getSize(); j++){
+                    output += query->getParam(i) + "=" + curr.getRowVal(j);
+                }
+            }
 
             if(i < query->getSize() - 1){
                 output += ",";

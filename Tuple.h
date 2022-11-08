@@ -23,6 +23,10 @@ public:
     string getRowVal(int i){
         return rowVals.at(i)->getParam();
     }
+
+    int getSize(){
+        return rowVals.size();
+    }
 };
 
 #endif //PROJECT_1_TUPLE_H
