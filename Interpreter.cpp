@@ -34,7 +34,14 @@ void Interpreter::interpretFacts(){
     for(unsigned int i  = 0; i < facts.size(); i++){
         Tuple* tuple = new Tuple();
 
-        tuple->setRowVals(facts.at(i)->getParams());
+        vector<Parameter*> vp = facts.at(i)->getParams();
+        vector<string> vs;
+
+        for(unsigned int i = 0; i < vp.size(); i++){
+            vs.push_back(vp.at(i)->getParam());
+        }
+
+        tuple->setRowVals(vs);
 
         Relation* r = database->getRel(facts.at(i)->getID());
 
@@ -90,10 +97,6 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     Relation newR2 = newR.project(varFirst);
 
     //use varIndexes to rename the relations header column names to query variables
-
-    //the getTuples() function destroys newR2's tuples for some reason
-    //set<Tuple*> theTuples = newR2.getTuples();
-
     Relation newR3  = newR2.rename(varIndexes);
 
     return newR3;
@@ -114,39 +117,34 @@ void Interpreter::toString(Relation relation, Predicate* query){
         }
     }
 
-    output += ")? ";
-
-    //is the query true?
-    //if a tuple is valid at it to validTuples
-
-    bool valid = true;
-    vector<Tuple> validTuples;
-
+    output += ")?";
 
     //output the relations stuff
 
-    if(valid == true){
+    if(relation.getTuples().size() > 0){ //if there's more than 1 tuple
 
-        output += " Yes" + '(' + validTuples.size() + ')';
+        output += " Yes(";
+        output += to_string(relation.getTuples().size());
+        output += ")";
 
         output += "\n  ";
+        /*
+        //output the tuples
+        for(set<Tuple>::iterator t = relation.getTuples().begin(); t != relation.getTuples().end(); ++t){
+            Tuple curr = *t;
 
-        for(unsigned int i = 0; i < query->getSize(); i++){ //maybe use the relation size
-            if(query->getParams().at(i)->isCon() == false){ //and it is a YES
+            for(unsigned int i = 0; i < curr.getSize(); i++){ //seg fault happens here
+                output += query->getParam(i) + "=" + curr.getRowVal(i);
 
-                for(unsigned int t = 0; t < validTuples.size(); t++){
-                    Tuple curr = validTuples.at(t);
-                    for(unsigned int j = 0; j < curr.getSize(); j++){
-                        output += query->getParam(i) + "=" + curr.getRowVal(j);
-                    }
-                }
-
-                if(i < query->getSize() - 1){
-                    output += ",";
+                if(i < curr.getSize() - 1){
+                    output += ", ";
                 }
             }
+
+            output += "\n  ";
         }
-    } else {
+         */
+    } else { //if there's no tuples
         output += " No";
     }
 

@@ -57,17 +57,16 @@ Relation Relation::project(vector<int> columns){
     }
 
     newHeader.setColName(newC);
-    Relation* projectR = new Relation(name, newHeader);
+    Relation projectR = *(new Relation(name, newHeader));
 
     //get the right column values
-
 
     for(set<Tuple>::iterator t = tuples.begin(); t != tuples.end(); t++){
 
         Tuple curr = *t;
         Tuple newT;
 
-        vector<Parameter*> newVals;
+        vector<string> newVals;
 
         //newT.setRowVals(newVals);
 
@@ -77,30 +76,27 @@ Relation Relation::project(vector<int> columns){
                 if(i == columns.at(j)){
                     //found one of the columns
                     string tupleVal = curr.getRowVal(i);
-                    Parameter newVal(tupleVal);
-                    if(newVal.getParam().at(0) == '\''){
-                        newVal.setConstant();
-                    }
-                    newVals.push_back(&newVal);
+                    newVals.push_back(tupleVal);
                 }
             }
         }
 
         newT.setRowVals(newVals);
 
-        projectR->addTuple(newT);
+        projectR.addTuple(newT);
     }
 
-    return *projectR;
+    return projectR;
 }
 
 Relation Relation::rename(vector<string> newColNames){
 
     //the tuples that are sent into this function aren't the right tuples
+    Header blank;
 
-    Relation* renameR;
-    renameR->setTuples(tuples);
-    renameR->setName(name);
+    Relation renameR = *(new Relation(name, blank));
+    renameR.setTuples(this->getTuples());
+    renameR.setName(name);
 
     vector<Parameter*> newN;
 
@@ -111,8 +107,7 @@ Relation Relation::rename(vector<string> newColNames){
 
     Header newHeader;
     newHeader.setColName(newN);
+    renameR.setHeader(newHeader);
 
-
-
-    return *renameR;
+    return renameR;
 }

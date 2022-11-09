@@ -33,12 +33,16 @@ public:
         return tuples;
     }
 
-    void setTuples(set<Tuple> input){
-        tuples = input;
-    }
-
     void setName(string input){
         name = input;
+    }
+
+    void setHeader(Header input){
+        colNames = input;
+    }
+
+    void setTuples(set<Tuple> input){
+        tuples = input;
     }
 
     void addTuple(Tuple newTuple){
