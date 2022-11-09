@@ -51,6 +51,8 @@ void Interpreter::interpretQueries(){
     for(unsigned int i  = 0; i < queries.size(); i++){
         Relation result = evaluatePredicate(queries.at(i));
 
+        //see if its a valid query
+
         toString(result, queries.at(i));
     }
 }
@@ -115,27 +117,37 @@ void Interpreter::toString(Relation relation, Predicate* query){
     output += ")? ";
 
     //is the query true?
+    //if a tuple is valid at it to validTuples
 
+    bool valid = true;
+    vector<Tuple> validTuples;
 
 
     //output the relations stuff
 
-    output += "\n  ";
+    if(valid == true){
 
-    for(unsigned int i = 0; i < query->getSize(); i++){ //maybe use the relation size
-        if(query->getParams().at(i)->isCon() == false){ //and it is a YES
+        output += " Yes" + '(' + validTuples.size() + ')';
 
-            for(set<Tuple>::iterator t = relation.getTuples().begin(); t != relation.getTuples().end(); t++){
-                Tuple curr = *t;
-                for(unsigned int j = 0; j < curr.getSize(); j++){
-                    output += query->getParam(i) + "=" + curr.getRowVal(j);
+        output += "\n  ";
+
+        for(unsigned int i = 0; i < query->getSize(); i++){ //maybe use the relation size
+            if(query->getParams().at(i)->isCon() == false){ //and it is a YES
+
+                for(unsigned int t = 0; t < validTuples.size(); t++){
+                    Tuple curr = validTuples.at(t);
+                    for(unsigned int j = 0; j < curr.getSize(); j++){
+                        output += query->getParam(i) + "=" + curr.getRowVal(j);
+                    }
+                }
+
+                if(i < query->getSize() - 1){
+                    output += ",";
                 }
             }
-
-            if(i < query->getSize() - 1){
-                output += ",";
-            }
         }
+    } else {
+        output += " No";
     }
 
     output += "\n";

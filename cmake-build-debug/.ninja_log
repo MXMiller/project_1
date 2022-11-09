@@ -51,3 +51,11 @@
 5589	6179	6896434171624835	project_1.exe	457db2ad1591dbca
 4	1029	6896436457625529	CMakeFiles/project_1.dir/Relation.cpp.obj	a110541d8a0d9d58
 1030	1506	6896436462357437	project_1.exe	457db2ad1591dbca
+5	958	6896497629697133	CMakeFiles/project_1.dir/main.cpp.obj	6ba9368c57a34a38
+9	991	6896497630026585	CMakeFiles/project_1.dir/Relation.cpp.obj	a110541d8a0d9d58
+13	1315	6896497633267559	CMakeFiles/project_1.dir/Interpreter.cpp.obj	e94ba227acfbc67d
+1315	1873	6896497638813947	project_1.exe	457db2ad1591dbca
+4	1140	6896497901577729	CMakeFiles/project_1.dir/main.cpp.obj	6ba9368c57a34a38
+8	1199	6896497902166161	CMakeFiles/project_1.dir/Relation.cpp.obj	a110541d8a0d9d58
+11	1487	6896497905038720	CMakeFiles/project_1.dir/Interpreter.cpp.obj	e94ba227acfbc67d
+1487	1894	6896497909081196	project_1.exe	457db2ad1591dbca
