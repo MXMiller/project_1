@@ -134,23 +134,23 @@ void Interpreter::toString(Relation relation, Predicate* query){
         for(set<Tuple>::iterator t = tuples.begin(); t != tuples.end(); ++t){
             Tuple curr = *t;
 
-            output += "\n  ";
+            if(curr.getSize() != 0){
+                output += "\n  ";
+            }
 
-            for(int i = 0; i < query->getSize(); i++){
+            for(int i = 0; i < curr.getSize(); i++){
                 output += query->getParam(i) + "=" + curr.getRowVal(i);
                 if(i < query->getSize() - 1){
                     output += ", ";
                 }
-            }
-
-            if(t != tuples.end()){
-                output += "\n";
             }
         }
 
     } else { //if there's no tuples
         output += " No";
     }
+
+    output += "\n";
 
     cout << output;
 }
