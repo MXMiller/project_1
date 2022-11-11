@@ -58,8 +58,6 @@ void Interpreter::interpretQueries(){
     for(unsigned int i  = 0; i < queries.size(); i++){
         Relation result = evaluatePredicate(queries.at(i));
 
-        //see if its a valid query
-
         toString(result, queries.at(i));
     }
 }
@@ -74,6 +72,9 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     for(unsigned int i = 0; i < query->getParams().size(); i++){
 
         Parameter p = query->getParam(i);
+        if(query->getParamCon(i) == true){
+            p.setConstant();
+        }
 
         if(p.isCon() == true){ // parameter is a constant
             newR = newR.select1(i, query->getParam(i));
@@ -121,34 +122,35 @@ void Interpreter::toString(Relation relation, Predicate* query){
 
     //output the relations stuff
 
-    if(relation.getTuples().size() > 0){ //if there's more than 1 tuple
+    set<Tuple> tuples = relation.getTuples();
+
+    if(tuples.size() > 0){ //if there's more than 1 tuple
 
         output += " Yes(";
         output += to_string(relation.getTuples().size());
         output += ")";
 
-        output += "\n  ";
-        /*
         //output the tuples
-        for(set<Tuple>::iterator t = relation.getTuples().begin(); t != relation.getTuples().end(); ++t){
+        for(set<Tuple>::iterator t = tuples.begin(); t != tuples.end(); ++t){
             Tuple curr = *t;
 
-            for(unsigned int i = 0; i < curr.getSize(); i++){ //seg fault happens here
-                output += query->getParam(i) + "=" + curr.getRowVal(i);
+            output += "\n  ";
 
-                if(i < curr.getSize() - 1){
+            for(unsigned int i = 0; i < query->getSize(); i++){
+                output += query->getParam(i) + "=" + curr.getRowVal(i);
+                if(i < query->getSize() - 1){
                     output += ", ";
                 }
             }
 
-            output += "\n  ";
+            if(t != tuples.end()){
+                output += "\n";
+            }
         }
-         */
+
     } else { //if there's no tuples
         output += " No";
     }
-
-    output += "\n";
 
     cout << output;
 }

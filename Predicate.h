@@ -44,6 +44,10 @@ public:
         return parameters.at(i)->getParam();
     }
 
+    bool getParamCon(int i){
+        return parameters.at(i)->isCon();
+    }
+
     vector<Parameter*> getParams(){
         return parameters;
     }
