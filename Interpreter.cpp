@@ -148,14 +148,14 @@ void Interpreter::toString(Relation relation, Predicate* query){
 
                 if(visited.find(query->getParam(j)) == visited.end()){
                     output += query->getParam(j) + "=" + curr.getRowVal(i);
-                    output += ", ";
                     visited.insert(query->getParam(j));
+                    output += ", ";
                 }
 
                 j++;
             }
 
-            if(tuples.size() > 1){
+            if(j != 0){
                 output.erase(output.end() - 2, output.end());
             }
         }
