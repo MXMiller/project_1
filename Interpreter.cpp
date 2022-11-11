@@ -140,7 +140,7 @@ void Interpreter::toString(Relation relation, Predicate* query){
 
             for(int i = 0; i < curr.getSize(); i++){
                 output += query->getParam(i) + "=" + curr.getRowVal(i);
-                if(i < query->getSize() - 1){
+                if(i < curr.getSize() - 1){
                     output += ", ";
                 }
             }
