@@ -102,7 +102,9 @@ Relation Relation::rename(vector<string> newColNames){
 
     for(unsigned int i = 0; i < newColNames.size(); i++){
         Parameter* newP = new Parameter(newColNames.at(i));
-        newN.push_back(newP);
+        if(newP->isCon() == false){
+            newN.push_back(newP);
+        }
     }
 
     Header newHeader;

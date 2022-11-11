@@ -138,11 +138,16 @@ void Interpreter::toString(Relation relation, Predicate* query){
                 output += "\n  ";
             }
 
+            int j = 0;
             for(int i = 0; i < curr.getSize(); i++){
-                output += query->getParam(i) + "=" + curr.getRowVal(i);
+                if(query->getParamCon(j) == true){
+                    j++;
+                }
+                output += query->getParam(j) + "=" + curr.getRowVal(i);
                 if(i < curr.getSize() - 1){
                     output += ", ";
                 }
+                j++;
             }
         }
 

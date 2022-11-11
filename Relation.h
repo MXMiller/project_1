@@ -29,6 +29,10 @@ public:
         return name;
     }
 
+    Header getColumns(){
+        return colNames;
+    }
+
     set<Tuple> getTuples(){
         return tuples;
     }
