@@ -1,8 +1,6 @@
 #include <vector>
 #include <map>
 #include "DatalogProgram.h"
-#include "Predicate.h"
-#include "Rule.h"
 #include "Header.h"
 #include "Tuple.h"
 #include "Relation.h"
@@ -71,6 +69,7 @@ Relation Relation::project(vector<int> columns){
         //newT.setRowVals(newVals);
 
         for(int i = 0; i < curr.getSize(); i++){
+
             for(unsigned int j = 0; j < columns.size(); j++){
                 //what is the first thing supposed to be?
                 if(i == columns.at(j)){

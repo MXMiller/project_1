@@ -139,16 +139,23 @@ void Interpreter::toString(Relation relation, Predicate* query){
             }
 
             int j = 0;
+            set<string> visited;
+
             for(int i = 0; i < curr.getSize(); i++){
                 if(query->getParamCon(j) == true){
                     j++;
                 }
-                output += query->getParam(j) + "=" + curr.getRowVal(i);
-                if(i < curr.getSize() - 1){
+
+                if(visited.find(query->getParam(j)) == visited.end()){
+                    output += query->getParam(j) + "=" + curr.getRowVal(i);
                     output += ", ";
+                    visited.insert(query->getParam(j));
                 }
+
                 j++;
             }
+
+            output.erase(output.end() - 2, output.end());
         }
 
     } else { //if there's no tuples
