@@ -127,7 +127,7 @@ void Interpreter::toString(Relation relation, Predicate* query){
     if(tuples.size() > 0){ //if there's more than 1 tuple
 
         output += " Yes(";
-        output += to_string(relation.getTuples().size());
+        output += to_string(tuples.size());
         output += ")";
 
         //output the tuples
@@ -155,7 +155,9 @@ void Interpreter::toString(Relation relation, Predicate* query){
                 j++;
             }
 
-            output.erase(output.end() - 2, output.end());
+            if(tuples.size() > 1){
+                output.erase(output.end() - 2, output.end());
+            }
         }
 
     } else { //if there's no tuples

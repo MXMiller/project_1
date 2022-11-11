@@ -66,8 +66,6 @@ Relation Relation::project(vector<int> columns){
 
         vector<string> newVals;
 
-        //newT.setRowVals(newVals);
-
         for(int i = 0; i < curr.getSize(); i++){
 
             for(unsigned int j = 0; j < columns.size(); j++){

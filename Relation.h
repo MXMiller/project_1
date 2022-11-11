@@ -37,6 +37,10 @@ public:
         return tuples;
     }
 
+    int getNumTuples(){
+        return tuples.size();
+    }
+
     void setName(string input){
         name = input;
     }
