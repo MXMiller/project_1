@@ -47,7 +47,7 @@ Relation Relation::project(vector<int> columns){
 
     //get the right column headers
 
-    for(unsigned int i = 0; i < colNames.getSize(); i++){
+    for(int i = 0; i < colNames.getSize(); i++){
         for(unsigned int j = 0; j < columns.size(); j++){
             if(i == columns.at(j)){
                 //found one of the columns
@@ -70,7 +70,7 @@ Relation Relation::project(vector<int> columns){
 
         //newT.setRowVals(newVals);
 
-        for(unsigned int i = 0; i < curr.getSize(); i++){
+        for(int i = 0; i < curr.getSize(); i++){
             for(unsigned int j = 0; j < columns.size(); j++){
                 //what is the first thing supposed to be?
                 if(i == columns.at(j)){

@@ -111,7 +111,7 @@ void Interpreter::toString(Relation relation, Predicate* query){
     //output the query stuff
     output += query->getID() + "(";
 
-    for(unsigned int i = 0; i < query->getSize(); i++){
+    for(int i = 0; i < query->getSize(); i++){
         output += query->getParam(i);
         if(i < query->getSize() - 1){
             output += ",";
@@ -136,7 +136,7 @@ void Interpreter::toString(Relation relation, Predicate* query){
 
             output += "\n  ";
 
-            for(unsigned int i = 0; i < query->getSize(); i++){
+            for(int i = 0; i < query->getSize(); i++){
                 output += query->getParam(i) + "=" + curr.getRowVal(i);
                 if(i < query->getSize() - 1){
                     output += ", ";
