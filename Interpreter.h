@@ -33,12 +33,14 @@ public:
 
     void interpretSchemes();
     void interpretFacts();
-    //void interpretRules();
+    void interpretRules();
     void interpretQueries();
 
     Relation evaluatePredicate(Predicate* query);
 
-    void toString(Relation relation, Predicate* query);
+    void toStringR(Relation relation, Rule* rules);
+
+    void toStringQ(Relation relation, Predicate* query);
 };
 
 #endif //PROJECT_1_INTERPRETER_H

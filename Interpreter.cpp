@@ -49,16 +49,26 @@ void Interpreter::interpretFacts(){
     }
 }
 
+void Interpreter::interpretRules(){
+    cout << "Rule Evaluation" << endl;
+
+    vector<Rule*> rules = program->getRules();
+
+    for(unsigned int i  = 0; i < rules.size(); i++){
+
+    }
+}
+
 void Interpreter::interpretQueries(){
 
-    //cout << endl << "       IN THE interpretQueries FUNCTION" << endl << endl;
+    cout << "Query Evaluation" << endl;
 
     vector<Predicate*> queries = program->getQueries();
 
     for(unsigned int i  = 0; i < queries.size(); i++){
         Relation result = evaluatePredicate(queries.at(i));
 
-        toString(result, queries.at(i));
+        toStringQ(result, queries.at(i));
     }
 }
 
@@ -103,7 +113,17 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     return newR3;
 }
 
-void Interpreter::toString(Relation relation, Predicate* query){
+void toStringR(Relation relation, Rule* rule){
+    string output = "";
+
+    output += rule->toString() + "(";
+
+    output += ")?";
+
+    cout << output;
+}
+
+void Interpreter::toStringQ(Relation relation, Predicate* query){
     //cout << endl << "       IN THE toString FUNCTION" << endl << endl;
 
     string output = "";
