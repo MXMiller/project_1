@@ -29,16 +29,12 @@ public:
         return name;
     }
 
-    Header getColumns(){
+    Header getHeader(){
         return colNames;
     }
 
     set<Tuple> getTuples(){
         return tuples;
-    }
-
-    int getNumTuples(){
-        return tuples.size();
     }
 
     void setName(string input){
@@ -57,12 +53,23 @@ public:
         tuples.insert(newTuple);
     }
 
+    bool addTupleB(Tuple newTuple){
+        return tuples.insert(newTuple).second;
+    }
+
     Relation select1(int columnI, string val);
     Relation select2(int columnI1, int columnI2);
     Relation project(vector<int> columns);
     Relation rename(vector<string> newColNames);
-    //Relation Join(Relation other);
 
+    Relation Join(Relation r1, Relation r2);
+    Header combineHeaders(Header h1, Header h2, vector<map<int, int>> colPairs);
+    bool isJoinable(Tuple t1, Tuple t2, vector<map<int, int>> colPairs);
+    Tuple combineTuples(Tuple t1, Tuple t2, vector<map<int, int>> colPairs);
+
+    int unionR(Relation result, int n);
+
+    void toStringT(Tuple tuple, Header colNames);
 };
 
 #endif //PROJECT_1_RELATION_H

@@ -38,8 +38,16 @@ public:
         headPredicate  = input;
     }
 
+    Predicate* getHead(){
+        return headPredicate;
+    }
+
     void addBody(Predicate* input){
         bodyPredicates.push_back(input);
+    }
+
+    vector<Predicate*> getBody(){
+        return bodyPredicates;
     }
 };
 

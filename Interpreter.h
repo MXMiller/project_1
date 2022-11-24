@@ -26,6 +26,7 @@ public:
 
         interpretSchemes();
         interpretFacts();
+        interpretRules();
         interpretQueries();
 
         return database;
@@ -36,9 +37,8 @@ public:
     void interpretRules();
     void interpretQueries();
 
+    Relation evaluateRules(Rule* rule);
     Relation evaluatePredicate(Predicate* query);
-
-    void toStringR(Relation relation, Rule* rules);
 
     void toStringQ(Relation relation, Predicate* query);
 };

@@ -54,9 +54,73 @@ void Interpreter::interpretRules(){
 
     vector<Rule*> rules = program->getRules();
 
-    for(unsigned int i  = 0; i < rules.size(); i++){
+    //while something do this. Keep track of how many times it does it.
+    int numNewTuples;
+    int n = 0;
 
+    set<Tuple> allTuples;
+
+    do{
+        numNewTuples = 0;
+
+        set<Tuple> newTuples;
+
+        for(unsigned int i = 0; i < rules.size(); i++){
+            cout << rules.at(i)->toString() << endl;
+
+            Relation result = evaluateRules(rules.at(i));
+
+            Relation* r = database->getRel(result.getName());
+
+            numNewTuples += r->unionR(result, n);
+        }
+
+        n++;
+    }while(numNewTuples > 0);
+
+    cout << "\nSchemes populated after " << n << " passes through the Rules.\n\n";
+}
+
+Relation Interpreter::evaluateRules(Rule* rule){
+
+    Predicate* head = rule->getHead();
+    vector<Predicate*> body = rule->getBody();
+    Relation result;
+    vector<Relation> relations;
+
+    for(unsigned int j = 0; j < body.size(); j++){
+        Relation r = evaluatePredicate(body.at(j));
+        relations.push_back(r);
     }
+
+    result = relations.at(0);
+    if(relations.size() > 1){
+        for(unsigned int j = 1; j < relations.size(); j++){
+            result = result.Join(result, relations.at(j));
+        }
+    }
+
+    vector<string> headColNames;
+
+    for(unsigned int i = 0; i < head->getParams().size(); i++){
+        headColNames.push_back(head->getParam(i));
+    }
+
+    vector<int> headCols;
+
+    for(unsigned int i = 0; i < result.getHeader().getSize(); i++){
+        for(unsigned int j = 0; j < headColNames.size(); j++){
+            if(result.getHeader().getColName(i)->getParam() == headColNames.at(j)){
+                headCols.push_back(i);
+            }
+        }
+    }
+
+    result = result.project(headCols);
+
+    result.setName(head->getID());
+
+    return result;
 }
 
 void Interpreter::interpretQueries(){
@@ -111,16 +175,6 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     Relation newR3  = newR2.rename(varIndexes);
 
     return newR3;
-}
-
-void toStringR(Relation relation, Rule* rule){
-    string output = "";
-
-    output += rule->toString() + "(";
-
-    output += ")?";
-
-    cout << output;
 }
 
 void Interpreter::toStringQ(Relation relation, Predicate* query){
