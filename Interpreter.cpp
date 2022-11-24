@@ -118,6 +118,17 @@ Relation Interpreter::evaluateRules(Rule* rule){
 
     result = result.project(headCols);
 
+    vector<string> varIndexes;
+
+    Relation* r = database->getRel(rule->getHead()->getID());
+    Header h = r->getHeader();
+
+    for(int i = 0; i < h.getSize(); i++){
+        varIndexes.push_back(h.getColName(i)->getParam());
+    }
+
+    result = result.rename(varIndexes);
+
     result.setName(head->getID());
 
     return result;

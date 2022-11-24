@@ -238,7 +238,6 @@ int Relation::unionR(Relation result, int n){
     for(set<Tuple>::iterator i = result.tuples.begin(); i != result.tuples.end(); ++i){
         Tuple curr = *i;
 
-        //it isn't adding tuples to the thing
         bool isNew = this->tuples.insert(curr).second;
 
         if(n == 0){
@@ -261,6 +260,9 @@ void Relation::toStringT(Tuple tuple, Header colNames) {
     string output = "  ";
 
     for(int i = 0; i < tuple.getSize(); i++){
+
+        //its outputting uppercase letters instead of lowercase ones
+
         output += colNames.getColName(i)->getParam() + "=" + tuple.getRowVal(i);
         if(i + 1 != tuple.getSize()){
             output += ", ";
