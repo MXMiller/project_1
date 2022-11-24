@@ -114,6 +114,7 @@ Relation Relation::rename(vector<string> newColNames){
 Relation Relation::Join(Relation r1, Relation r2){
 
     //combine headers
+    //ITS MAKING TOO MANY HEADERS
 
     vector<map<int, int>> colPairs;
 
@@ -260,11 +261,8 @@ void Relation::toStringT(Tuple tuple, Header colNames) {
     string output = "  ";
 
     for(int i = 0; i < tuple.getSize(); i++){
-
-        //its outputting uppercase letters instead of lowercase ones
-
         output += colNames.getColName(i)->getParam() + "=" + tuple.getRowVal(i);
-        if(i + 1 != tuple.getSize()){
+        if(i != tuple.getSize() - 1){
             output += ", ";
         }
     }

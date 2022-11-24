@@ -1,4 +1,5 @@
 #include <vector>
+#include <algorithm>
 #include "DatalogProgram.h"
 #include "Predicate.h"
 #include "Interpreter.h"
@@ -55,7 +56,7 @@ void Interpreter::interpretRules(){
     vector<Rule*> rules = program->getRules();
 
     //while something do this. Keep track of how many times it does it.
-    int numNewTuples;
+    int numNewTuples = 0;
     int n = 0;
 
     set<Tuple> allTuples;
@@ -85,7 +86,6 @@ Relation Interpreter::evaluateRules(Rule* rule){
 
     Predicate* head = rule->getHead();
     vector<Predicate*> body = rule->getBody();
-    Relation result;
     vector<Relation> relations;
 
     for(unsigned int j = 0; j < body.size(); j++){
@@ -93,7 +93,7 @@ Relation Interpreter::evaluateRules(Rule* rule){
         relations.push_back(r);
     }
 
-    result = relations.at(0);
+    Relation result = relations.at(0);
     if(relations.size() > 1){
         for(unsigned int j = 1; j < relations.size(); j++){
             result = result.Join(result, relations.at(j));
@@ -169,11 +169,14 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
 
             varFirst.push_back(i);
 
+            //ERROR HERE IT'S ADDING TOO MANY THINGS
             for(unsigned int j = 0; j < query->getParams().size(); j++){
                 if(query->getParam(i) == query->getParam(j)){
                     newR = newR.select2(i, j);
                 } else {
-                    varIndexes.push_back(query->getParam(i));
+                    if(find(varIndexes.begin(), varIndexes.end(), query->getParam(i)) == varIndexes.end()){
+                        varIndexes.push_back(query->getParam(i));
+                    }
                 }
             }
         }
@@ -183,7 +186,7 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     Relation newR2 = newR.project(varFirst);
 
     //use varIndexes to rename the relations header column names to query variables
-    Relation newR3  = newR2.rename(varIndexes);
+    Relation newR3 = newR2.rename(varIndexes);
 
     return newR3;
 }
