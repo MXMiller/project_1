@@ -117,11 +117,11 @@ Relation Relation::Join(Relation r1, Relation r2){
 
     vector<map<int, int>> colPairs;
 
-    for(unsigned int i = 0; i < r1.colNames.getSize(); i++){
+    for(int i = 0; i < r1.colNames.getSize(); i++){
 
         string col1 = r1.colNames.getColName(i)->getParam();
 
-        for(unsigned int j = 0; j < r2.colNames.getSize(); j++){
+        for(int j = 0; j < r2.colNames.getSize(); j++){
 
             string col2 = r2.colNames.getColName(j)->getParam();
 
@@ -165,11 +165,11 @@ Header Relation::combineHeaders(Header h1, Header h2, vector<map<int, int>> colP
 
     vector<Parameter*> newColNames;
 
-    for(unsigned int i = 0; i < h1.getSize(); i++){
+    for(int i = 0; i < h1.getSize(); i++){
         newColNames.push_back(h1.getColName(i));
     }
 
-    for(unsigned int i = 0; i < h2.getSize(); i++){
+    for(int i = 0; i < h2.getSize(); i++){
 
         bool isIn = false;
 
@@ -208,11 +208,11 @@ Tuple Relation::combineTuples(Tuple t1, Tuple t2, vector<map<int, int>> colPairs
 
     vector<string> vals;
 
-    for(unsigned int i = 0; i < t1.getSize(); i++){
+    for(int i = 0; i < t1.getSize(); i++){
         vals.push_back(t1.getRowVal(i));
     }
 
-    for(unsigned int i = 0; i < t2.getSize(); i++){
+    for(int i = 0; i < t2.getSize(); i++){
 
         bool isIn = false;
 
