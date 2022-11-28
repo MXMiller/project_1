@@ -94,6 +94,7 @@ Relation Interpreter::evaluateRules(Rule* rule){
     }
 
     Relation result = relations.at(0);
+    //join doesn't add the relations to result because they are all the same
     if(relations.size() > 1){
         for(unsigned int j = 1; j < relations.size(); j++){
             result = result.Join(result, relations.at(j));
@@ -108,6 +109,8 @@ Relation Interpreter::evaluateRules(Rule* rule){
 
     vector<int> headCols;
 
+    //headCols ends up empty. results headers are lowercase while headColNames are uppercase.
+    //That's because rename doesn't work right
     for(int i = 0; i < result.getHeader().getSize(); i++){
         for(unsigned int j = 0; j < headColNames.size(); j++){
             if(result.getHeader().getColName(i)->getParam() == headColNames.at(j)){
@@ -163,17 +166,21 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
 
         if(p.isCon() == true){ // parameter is a constant
             newR = newR.select1(i, query->getParam(i));
-        }
-        else if(p.isCon() == false){ // parameter is a variable
+
+            varIndexes.push_back(query->getParam(i));
+        } else { // parameter is a variable
             string first = query->getParam(i);
 
             varFirst.push_back(i);
 
             for(unsigned int j = 0; j < query->getParams().size(); j++){
-                //out_of_range error here
                 if(query->getParam(i) == query->getParam(j)){
                     newR = newR.select2(i, j);
+                    if(find(varIndexes.begin(), varIndexes.end(), query->getParam(i)) == varIndexes.end()){
+                        varIndexes.push_back(query->getParam(i));
+                    }
                 } else {
+                    //if it's not already in the vector
                     if(find(varIndexes.begin(), varIndexes.end(), query->getParam(i)) == varIndexes.end()){
                         varIndexes.push_back(query->getParam(i));
                     }
@@ -186,6 +193,7 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     Relation newR2 = newR.project(varFirst);
 
     //use varIndexes to rename the relations header column names to query variables
+        //varIndexes is empty when it should have stuff in it.
     Relation newR3 = newR2.rename(varIndexes);
 
     return newR3;
