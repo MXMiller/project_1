@@ -169,8 +169,8 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
 
             varFirst.push_back(i);
 
-            //ERROR HERE IT'S ADDING TOO MANY THINGS
             for(unsigned int j = 0; j < query->getParams().size(); j++){
+                //out_of_range error here
                 if(query->getParam(i) == query->getParam(j)){
                     newR = newR.select2(i, j);
                 } else {

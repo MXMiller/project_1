@@ -114,7 +114,6 @@ Relation Relation::rename(vector<string> newColNames){
 Relation Relation::Join(Relation r1, Relation r2){
 
     //combine headers
-    //ITS MAKING TOO MANY HEADERS
 
     vector<map<int, int>> colPairs;
 

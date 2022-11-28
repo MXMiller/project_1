@@ -116,7 +116,12 @@ Predicate Parser::fact(){
     match(TokenType::STRING, i);
     fact->addParam(tokens.at(i)->getVal(), true);
     i++;
-    stringList(fact);
+
+    //BREAKS HERE
+    if(tokens.at(i)->getTokenType() == TokenType::COMMA){
+        stringList(fact);
+    }
+
     match(TokenType::RIGHT_PAREN, i);
     i++;
     match(TokenType::PERIOD, i);
@@ -286,7 +291,7 @@ DatalogProgram* Parser::parse(){
 
     //cout << "I am in the parser" << endl;
 
-    //1. WIP check syntax. make sure you have the right things in the right order
+    //1. check syntax. make sure you have the right things in the right order
     //2. write classes and data structures
     //3. write code to create data structures
 
