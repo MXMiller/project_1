@@ -34,7 +34,9 @@ public:
 
     void addParam(string input, bool c){
         Parameter* p = new Parameter(input);
-        p->setConstant();
+        if(c){
+            p->setConstant();
+        }
         parameters.push_back(p);
     }
 

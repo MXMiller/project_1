@@ -141,7 +141,6 @@ Relation Relation::Join(Relation r1, Relation r2){
     Tuple newTuple;
     bool joinable;
 
-    //THE GETS THE RIGHT X VALUES BUT THE WRONG Y VALUES, it just adds the z value again
     for(set<Tuple>::iterator i = r1.tuples.begin(); i != r1.tuples.end(); ++i){
 
         Tuple curr1 = *i;
@@ -175,8 +174,10 @@ Header Relation::combineHeaders(Header h1, Header h2, vector<map<int, int>> colP
         bool isIn = false;
 
         for(unsigned int j = 0; j < colPairs.size(); j++){
-            if(i == colPairs.at(j)[1]){
-               isIn = true;
+            for(map<int, int>::iterator it = colPairs.at(j).begin(); it != colPairs.at(j).end(); it++){
+                if(i == it->second){
+                    isIn = true;
+                }
             }
         }
 
@@ -206,6 +207,7 @@ bool Relation::isJoinable(Tuple t1, Tuple t2, vector<map<int, int>> colPairs){
 }
 
 Tuple Relation::combineTuples(Tuple t1, Tuple t2, vector<map<int, int>> colPairs){
+
     Tuple newTuple;
 
     vector<string> vals;
@@ -237,6 +239,7 @@ Tuple Relation::combineTuples(Tuple t1, Tuple t2, vector<map<int, int>> colPairs
 }
 
 int Relation::unionR(Relation result, int n){
+
     int numNewTuples = 0;
 
     for(set<Tuple>::iterator i = result.tuples.begin(); i != result.tuples.end(); ++i){
@@ -245,8 +248,9 @@ int Relation::unionR(Relation result, int n){
         bool isNew = this->tuples.insert(curr).second;
 
         if(n == 0){
-            toStringT(curr, result.getHeader());
+            //toStringT(curr, result.getHeader());
             if(isNew){
+                toStringT(curr, result.getHeader());
                 numNewTuples++;
             }
         } else {
@@ -261,8 +265,10 @@ int Relation::unionR(Relation result, int n){
 }
 
 void Relation::toStringT(Tuple tuple, Header colNames) {
+
     string output = "  ";
 
+    //6 tuples but 5 colNames. There's a duplicate tuple row
     for(int i = 0; i < tuple.getSize(); i++){
         output += colNames.getColName(i)->getParam() + "=" + tuple.getRowVal(i);
         if(i != tuple.getSize() - 1){

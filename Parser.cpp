@@ -117,7 +117,6 @@ Predicate Parser::fact(){
     fact->addParam(tokens.at(i)->getVal(), true);
     i++;
 
-    //BREAKS HERE
     if(tokens.at(i)->getTokenType() == TokenType::COMMA){
         stringList(fact);
     }

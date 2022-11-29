@@ -96,7 +96,6 @@ Relation Interpreter::evaluateRules(Rule* rule){
     Relation result = relations.at(0);
     if(relations.size() > 1){
         for(unsigned int j = 1; j < relations.size(); j++){
-            //ERROR HERE
             result = result.Join(result, relations.at(j));
         }
     }
@@ -112,6 +111,7 @@ Relation Interpreter::evaluateRules(Rule* rule){
     for(unsigned int i = 0; i < headColNames.size(); i++){
         for(int j = 0; j < result.getHeader().getSize(); j++){
             if(headColNames.at(i) == result.getHeader().getColName(j)->getParam()){
+
                 headCols.push_back(j);
             }
         }
@@ -165,7 +165,8 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
         if(p.isCon() == true){ // parameter is a constant
             newR = newR.select1(i, query->getParam(i));
 
-            varIndexes.push_back(query->getParam(i));
+            //varIndexes.push_back(query->getParam(i));
+
         } else { // parameter is a variable
             string first = query->getParam(i);
 
@@ -191,7 +192,6 @@ Relation Interpreter::evaluatePredicate(Predicate* query){
     Relation newR2 = newR.project(varFirst);
 
     //use varIndexes to rename the relations header column names to query variables
-        //varIndexes is empty when it should have stuff in it.
     Relation newR3 = newR2.rename(varIndexes);
 
     return newR3;
