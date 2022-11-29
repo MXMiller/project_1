@@ -94,7 +94,6 @@ Relation Interpreter::evaluateRules(Rule* rule){
     }
 
     Relation result = relations.at(0);
-    //join doesn't add the relations to result because they are all the same
     if(relations.size() > 1){
         for(unsigned int j = 1; j < relations.size(); j++){
             result = result.Join(result, relations.at(j));
@@ -109,12 +108,10 @@ Relation Interpreter::evaluateRules(Rule* rule){
 
     vector<int> headCols;
 
-    //headCols ends up empty. results headers are lowercase while headColNames are uppercase.
-    //That's because rename doesn't work right
-    for(int i = 0; i < result.getHeader().getSize(); i++){
-        for(unsigned int j = 0; j < headColNames.size(); j++){
-            if(result.getHeader().getColName(i)->getParam() == headColNames.at(j)){
-                headCols.push_back(i);
+    for(int i = 0; i < headColNames.size(); i++){
+        for(unsigned int j = 0; j < result.getHeader().getSize(); j++){
+            if(headColNames.at(i) == result.getHeader().getColName(j)->getParam()){
+                headCols.push_back(j);
             }
         }
     }

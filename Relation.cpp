@@ -45,11 +45,11 @@ Relation Relation::project(vector<int> columns){
 
     //get the right column headers
 
-    for(int i = 0; i < colNames.getSize(); i++){
-        for(unsigned int j = 0; j < columns.size(); j++){
-            if(i == columns.at(j)){
+    for(int i = 0; i < columns.size(); i++){
+        for(unsigned int j = 0; j < colNames.getSize(); j++){
+            if(columns.at(i) == j){
                 //found one of the columns
-                newC.push_back(colNames.getColName(i));
+                newC.push_back(colNames.getColName(columns.at(i)));
             }
         }
     }
@@ -66,13 +66,13 @@ Relation Relation::project(vector<int> columns){
 
         vector<string> newVals;
 
-        for(int i = 0; i < curr.getSize(); i++){
+        for(int i = 0; i < columns.size(); i++){
 
-            for(unsigned int j = 0; j < columns.size(); j++){
+            for(unsigned int j = 0; j < curr.getSize(); j++){
                 //what is the first thing supposed to be?
-                if(i == columns.at(j)){
+                if(columns.at(i) == j){
                     //found one of the columns
-                    string tupleVal = curr.getRowVal(i);
+                    string tupleVal = curr.getRowVal(columns.at(i));
                     newVals.push_back(tupleVal);
                 }
             }
