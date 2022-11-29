@@ -45,8 +45,8 @@ Relation Relation::project(vector<int> columns){
 
     //get the right column headers
 
-    for(int i = 0; i < columns.size(); i++){
-        for(unsigned int j = 0; j < colNames.getSize(); j++){
+    for(unsigned int i = 0; i < columns.size(); i++){
+        for(int j = 0; j < colNames.getSize(); j++){
             if(columns.at(i) == j){
                 //found one of the columns
                 newC.push_back(colNames.getColName(columns.at(i)));
@@ -66,9 +66,9 @@ Relation Relation::project(vector<int> columns){
 
         vector<string> newVals;
 
-        for(int i = 0; i < columns.size(); i++){
+        for(unsigned int i = 0; i < columns.size(); i++){
 
-            for(unsigned int j = 0; j < curr.getSize(); j++){
+            for(int j = 0; j < curr.getSize(); j++){
                 //what is the first thing supposed to be?
                 if(columns.at(i) == j){
                     //found one of the columns

@@ -108,8 +108,8 @@ Relation Interpreter::evaluateRules(Rule* rule){
 
     vector<int> headCols;
 
-    for(int i = 0; i < headColNames.size(); i++){
-        for(unsigned int j = 0; j < result.getHeader().getSize(); j++){
+    for(unsigned int i = 0; i < headColNames.size(); i++){
+        for(int j = 0; j < result.getHeader().getSize(); j++){
             if(headColNames.at(i) == result.getHeader().getColName(j)->getParam()){
                 headCols.push_back(j);
             }
