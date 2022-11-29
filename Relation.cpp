@@ -175,8 +175,10 @@ Header Relation::combineHeaders(Header h1, Header h2, vector<map<int, int>> colP
         bool isIn = false;
 
         for(unsigned int j = 0; j < colPairs.size(); j++){
-            if(i == colPairs.at(j)[1]){
-               isIn = true;
+            for(map<int, int>::iterator it = colPairs.at(j).begin(); it != colPairs.at(j).end(); it++){
+                if(i == it->second){
+                    isIn = true;
+                }
             }
         }
 
