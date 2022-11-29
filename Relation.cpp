@@ -141,6 +141,7 @@ Relation Relation::Join(Relation r1, Relation r2){
     Tuple newTuple;
     bool joinable;
 
+    //THE GETS THE RIGHT X VALUES BUT THE WRONG Y VALUES, it just adds the z value again
     for(set<Tuple>::iterator i = r1.tuples.begin(); i != r1.tuples.end(); ++i){
 
         Tuple curr1 = *i;
@@ -194,9 +195,10 @@ bool Relation::isJoinable(Tuple t1, Tuple t2, vector<map<int, int>> colPairs){
     bool joinable = true;
 
     for(unsigned int i = 0; i < colPairs.size(); i++){
-        map<int, int>::iterator it = colPairs.at(i).begin();
-        if(t1.getRowVal(it->first) != t2.getRowVal(it->second)){
-            joinable = false;
+        for(map<int, int>::iterator it = colPairs.at(i).begin(); it != colPairs.at(i).end(); it++){
+            if(t1.getRowVal(it->first) != t2.getRowVal(it->second)){
+                joinable = false;
+            }
         }
     }
 
@@ -217,8 +219,10 @@ Tuple Relation::combineTuples(Tuple t1, Tuple t2, vector<map<int, int>> colPairs
         bool isIn = false;
 
         for(unsigned int j = 0; j < colPairs.size(); j++){
-            if(i == colPairs.at(j)[2]){
-                isIn = true;
+            for(map<int, int>::iterator it = colPairs.at(j).begin(); it != colPairs.at(j).end(); it++){
+                if(i == it->second){
+                    isIn = true;
+                }
             }
         }
 

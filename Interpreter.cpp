@@ -96,6 +96,7 @@ Relation Interpreter::evaluateRules(Rule* rule){
     Relation result = relations.at(0);
     if(relations.size() > 1){
         for(unsigned int j = 1; j < relations.size(); j++){
+            //ERROR HERE
             result = result.Join(result, relations.at(j));
         }
     }
